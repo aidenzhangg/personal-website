@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef, useState, type FormEvent } from 'react'
+import { useEffect, useRef, useState, type FormEvent } from 'react'
 import './App.css'
 
 const tabs = ['About', 'Projects', 'Resume', 'Experience', 'Skills', 'Extracurriculars', 'Contact'] as const
@@ -6,12 +6,13 @@ type Tab = typeof tabs[number]
 type Profile = { name: string; email: string; location: string; intro: string; about: string; skills: string; projects: string; experience: string; extracurriculars: string; github: string; linkedin: string; photo: string; gallery: string[]; resume: string }
 const initial: Profile = {
   name: 'Aiden Zhang', email: 'a522zhan@uwaterloo.ca', location: 'Richmond Hill, Ontario',
-  intro: 'Richmond Hill, Ontario · Projects, experience, and interests.',
-  about: 'I’m Aiden Zhang, based in Richmond Hill, Ontario. Here you can find my projects, resume, and experience.',
+  intro: '',
+  about: '',
   skills: '', projects: '', experience: '', extracurriculars: '', github: '', linkedin: '', photo: '', gallery: [], resume: '',
 }
-function readProfile(): Profile { try { const saved = JSON.parse(localStorage.getItem('aiden-portfolio') || '{}'); if (saved.intro?.includes('what I’m working on, and the things I do along the way.')) delete saved.intro; if (saved.about?.includes('This is my corner of the internet')) delete saved.about; return { ...initial, ...saved } } catch { return initial } }
+function readProfile(): Profile { try { const saved = JSON.parse(localStorage.getItem('aiden-portfolio') || '{}'); if (saved.intro?.includes('what I’m working on, and the things I do along the way.')) delete saved.intro; if (saved.about?.includes('This is my corner of the internet') || saved.about?.includes('Here you can find my projects, resume, and experience.')) delete saved.about; if (saved.intro === 'Richmond Hill, Ontario · Projects, experience, and interests.') delete saved.intro; return { ...initial, ...saved } } catch { return initial } }
 function Icon({ name, size = 20 }: { name: string; size?: number }) {
+  if (name === 'GitHub' || name === 'LinkedIn') return <img className={`brand-icon brand-${name.toLowerCase()}`} src={name === 'GitHub' ? '/icons/github.svg' : '/icons/linkedin.png'} width={size} height={size} alt="" aria-hidden="true"/>
   const paths: Record<string, string> = {
     About: 'M20 21v-2a7 7 0 0 0-14 0v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8',
     Projects: 'M3 7V4h6l2 3h10v13H3V7Z',
@@ -30,7 +31,7 @@ function Icon({ name, size = 20 }: { name: string; size?: number }) {
   }
   return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={paths[name] || paths.Projects}/></svg>
 }
-function WindowsMark() { return <span className="windows-mark" aria-hidden="true"><i/><i/><i/><i/></span> }
+function WindowsMark() { return <img className="windows-logo" src="/icons/windows.svg" width="24" height="24" alt="" aria-hidden="true"/> }
 function App() {
   const [profile, setProfile] = useState<Profile>(readProfile)
   const [tab, setTab] = useState<Tab>(() => tabs.find(t => t.toLowerCase() === window.location.hash.slice(1)) || 'About')
@@ -76,9 +77,7 @@ function App() {
         <div className="toolbar"><div className="navigation-arrows"><button aria-label="Go to About me" onClick={() => navigate('About')}>←</button><button aria-label="Go up to About me" onClick={() => navigate('About')}>↑</button></div><div className="address-bar"><Icon name="Projects" size={16}/><span>Portfolio</span><span className="chevron">›</span><span>{tab === 'About' ? 'About me' : tab}</span></div><button className="toolbar-edit" onClick={edit}><Icon name="Settings" size={16}/><span>Edit profile</span></button></div>
         <div className="window-layout"><aside className="sidebar"><div className="sidebar-heading">MY PORTFOLIO</div><nav aria-label="Portfolio sections">{tabs.map(item => <button key={item} aria-current={tab === item ? 'page' : undefined} onClick={() => navigate(item)}><Icon name={item}/><span>{item === 'About' ? 'About me' : item}</span></button>)}</nav><div className="sidebar-bottom"><span className="small-avatar">{profile.name.split(' ').map(n => n[0]).join('')}</span><div><strong>{profile.name}</strong><small>Personal account</small></div></div></aside>
         <main id="main" className="window-content" key={tab}>
-          {tab === 'About' ? <><div className="page-eyebrow">ABOUT ME</div><div className="about-hero"><div><p className="hello-label">About</p><h1>{profile.name}<span>.</span></h1><p className="intro">{profile.intro}</p><div className="hero-actions"><button className="primary" onClick={() => navigate('Projects')}><Icon name="Projects" size={17}/>My projects<span>↗</span></button><button className="secondary" onClick={() => navigate('Resume')}><Icon name="Resume" size={17}/>View resume</button></div></div><div className="portrait-card">{profile.photo ? <img src={profile.photo} alt={`${profile.name}'s portrait`}/> : <button className="portrait-placeholder" onClick={edit}><Icon name="About" size={62}/><span>Add a photo</span></button>}<span className="portrait-label">{profile.name}<span className="live-dot"/></span></div></div>
-            <section className="about-section"><h2><span className="section-icon"><Icon name="About" size={18}/></span>About me</h2><p>{profile.about}</p></section><div className="details-grid"><div className="detail-card"><span className="detail-label">BASED IN</span><strong>{profile.location}</strong><small>Canada</small></div><a className="detail-card" href={`mailto:${profile.email}`}><span className="detail-label">EMAIL <span>↗</span></span><strong>{profile.email}</strong><small>Contact</small></a></div>
-            <section className="explore-section"><div className="section-heading"><h2>Explore</h2><span></span></div><div className="folder-grid">{(['Projects','Experience','Extracurriculars'] as const).map(item => <button key={item} onClick={() => navigate(item)}><Icon name={item} size={26}/><span>{item}<small>{item === 'Projects' ? 'View projects' : item === 'Experience' ? 'View experience' : 'View activities'}</small></span><span className="folder-arrow">↗</span></button>)}</div></section><div className="about-socials">{social('GitHub',profile.github)}{social('LinkedIn',profile.linkedin)}<a href={`mailto:${profile.email}`}>Email ↗</a></div>
+          {tab === 'About' ? <><section className="plain-about"><h1>{profile.name}</h1>{profile.photo && <img className="plain-portrait" src={profile.photo} alt={profile.name}/>}<h2>About me</h2>{profile.intro && <p>{profile.intro}</p>}{profile.about && <p>{profile.about}</p>}<button className="write-about" onClick={edit}>Edit about me</button></section>
           </> : <><div className="page-eyebrow">PORTFOLIO / {tab.toUpperCase()}</div><div className="page-heading"><span className="page-icon"><Icon name={tab} size={30}/></span><div><h1>{tab}</h1><p>{tab === 'Projects' ? 'Selected work' : tab === 'Resume' ? 'Resume PDF' : tab === 'Contact' ? profile.location : tab === 'Skills' ? 'Technical skills' : tab === 'Experience' ? 'Work and experience' : 'Activities and interests'}</p></div></div>
             {tab === 'Projects' && entries(profile.projects,'Projects')}{tab === 'Skills' && entries(profile.skills,'Skills')}{tab === 'Experience' && entries(profile.experience,'Experience')}{tab === 'Extracurriculars' && <>{entries(profile.extracurriculars,'Activities')}<div className="gallery">{profile.gallery.map((photo,i) => <img key={i} src={photo} alt={`Personal photo ${i+1}`}/>)}</div></>}
             {tab === 'Resume' && <div className="resume-content">{profile.resume ? <><div className="resume-document"><Icon name="Resume" size={40}/><div><h2>{profile.name} — Resume</h2><p>PDF document</p></div><a className="primary" href={profile.resume} download={`${profile.name.replaceAll(' ','-')}-Resume.pdf`}>Download PDF ↓</a></div><object data={profile.resume} type="application/pdf" aria-label="Resume PDF" className="pdf-viewer"><p>Use Download PDF to view the resume.</p></object></> : <div className="empty-state"><Icon name="Resume" size={45}/><h2>Resume coming soon</h2><button className="secondary" onClick={edit}>Upload resume</button></div>}</div>}
