@@ -14,6 +14,8 @@ const initial: Profile = {
 function readProfile(): Profile { try { const saved = JSON.parse(localStorage.getItem('aiden-portfolio') || '{}'); if (saved.intro?.includes('what I’m working on, and the things I do along the way.')) delete saved.intro; if (saved.about?.includes('This is my corner of the internet') || saved.about?.includes('Here you can find my projects, resume, and experience.')) delete saved.about; if (saved.intro === 'Richmond Hill, Ontario · Projects, experience, and interests.') delete saved.intro; return { ...initial, ...saved } } catch { return initial } }
 function Icon({ name, size = 20 }: { name: string; size?: number }) {
   const appIcons: Record<string, string> = {
+    Sound: '/icons/sound.svg',
+    Battery: '/icons/battery.svg',
     About: '/icons/user-folder.png',
     Portfolio: '/icons/documents.png',
     Projects: '/icons/explorer.png',
@@ -51,6 +53,10 @@ function App() {
   const [searchMessage, setSearchMessage] = useState('')
   function findSection(e: FormEvent) { e.preventDefault(); const found = tabs.find(item => (item === 'About' ? 'about me' : item.toLowerCase()).includes(search.trim().toLowerCase())); if (found && search.trim()) { navigate(found); setSearchMessage('') } else { setSearchMessage('Choose About, Portfolio, Projects, Resume, Experience, Skills, Extracurriculars, or Contact.'); } }
   const [locked, setLocked] = useState(true)
+  const [unlocking, setUnlocking] = useState(false)
+  const unlockTimer = useRef<number | undefined>(undefined)
+  useEffect(() => () => window.clearTimeout(unlockTimer.current), [])
+  function unlock() { if (unlocking) return; setUnlocking(true); const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches; unlockTimer.current = window.setTimeout(() => { setLocked(false); setUnlocking(false); navigate('About') }, reducedMotion ? 0 : 520) }
   const [startOpen, setStartOpen] = useState(false)
   const [windowOpen, setWindowOpen] = useState(true)
   const [maximized, setMaximized] = useState(false)
@@ -90,7 +96,7 @@ function App() {
   const dateValue = (part: string) => dateParts.find(p => p.type === part)?.value || ''
   const dateLabel = `${dateValue('year')}-${dateValue('month')}-${dateValue('day')}`
   const timeLabel = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'America/Toronto' })
-  if (locked) return <main className="lock-screen"><div className="lock-clock"><time>{timeLabel}</time><p>{dateLabel}</p></div><section className="lock-account"><div className="lock-avatar">{profile.photo ? <img src={profile.photo} alt={profile.name}/> : <Icon name="About" size={52}/>}</div><h1>Aiden’s Portfolio</h1><button className="primary" onClick={() => { setLocked(false); navigate('About') }}>Enter <span aria-hidden="true">→</span></button></section><div className="lock-tray"><Icon name="Wifi" size={20}/><Icon name="Sound" size={20}/><Icon name="Battery" size={23}/></div></main>
+  if (locked) return <main className={`lock-screen ${unlocking ? "lock-exiting" : ""}`}><div className="lock-clock"><time>{timeLabel}</time><p>{dateLabel}</p></div><section className="lock-account">{profile.photo && <div className="lock-avatar"><img src={profile.photo} alt={profile.name}/></div>}<h1>Aiden’s Portfolio</h1><button className="primary" onClick={unlock} disabled={unlocking}>Enter <span aria-hidden="true">→</span></button></section><div className="lock-tray"><Icon name="Wifi" size={20}/><Icon name="Sound" size={20}/><Icon name="Battery" size={23}/></div></main>
   return <>
     <a href="#main" className="skip">Skip to content</a>
     <div className={`win-desktop ${night ? "night-light" : ""} ${energy ? "energy-saver" : ""} ${accessible ? "large-text" : ""}`}>
