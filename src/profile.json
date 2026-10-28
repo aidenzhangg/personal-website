@@ -1,0 +1,47 @@
+{
+  "name": "Aiden Zhang",
+  "email": "a522zhan@uwaterloo.ca",
+  "location": "Richmond Hill, Ontario",
+  "intro": "Computer Engineering at the University of Waterloo.",
+  "about": "I’m a Computer Engineering co-op student at the University of Waterloo, with interests in computer vision, machine learning, and autonomous systems. My projects include food recognition, robot navigation, drone telemetry, and a study assistant extension.\n\nEducation\nUniversity of Waterloo — BASc in Computer Engineering with Co-op\nSeptember 2026 – April 2031 (expected)\nCoursework includes C++ programming, engineering design and prototyping, physics, linear algebra, and calculus.\n\nCertification\nStanford AI Machine Learning Specialization — July–October 2025. Built models using neural networks, regression, decision trees, clustering, and recommender systems.",
+  "skills": "Languages\nJava, Python, C++, SQL, HTML, CSS, TypeScript, JavaScript\n\nFrameworks & libraries\nReact, Spring Boot, PyTorch, TensorFlow, scikit-learn, OpenCV, YOLO, ROS 2, pandas, NumPy, LangChain, PyTest\n\nDeveloper tools\nGit, GitHub, Docker, Foxglove, PyCharm, Eclipse, Vite, Chrome DevTools, VS Code\n\nAdditional technologies\nPostgreSQL, MAVLink, py_trees, pymavlink, OpenAPI, YAML, CI/CD",
+  "projects": "Computer Vision Food Recognition & Nutritional Analysis\nJune 2025 – October 2026\nPython, PyTorch, YOLO, OpenCV, NumPy, pandas, TensorFlow\n• Built a live webcam app that identifies five food categories and detects multiple items using a fine-tuned YOLO11 model.\n• Averaged approximately 13.5 FPS across 300 frames. Trained on 245 hand-labelled images and reached 98% mAP50 on a held-out validation set.\n• Integrated nutrition feedback and text-to-speech, including a five-month pilot with six participants.\n\nAutonomous Robot Navigation & LiDAR Mapping — WATonomous\nSeptember 2026\nC++, ROS 2, Foxglove, Docker\n• Developed a four-node navigation pipeline combining LiDAR mapping, odometry-based map fusion, A* pathfinding, and 10 Hz Pure Pursuit control.\n• Built 100 × 100 m occupancy grids at 0.1 m resolution, with 0.65 m obstacle inflation and eight-direction A* planning.\n\nAutonomous Drone Behaviour Tree Telemetry\nSeptember 2026 – Present\nPython, ROS 2, MAVLink, py_trees, pymavlink, Git\n• Mapped observed drone behaviours to compact IDs and parent–child relationships for MAVLink STATUSTEXT.\n• Built air-to-ground telemetry to reconstruct autonomy state, targeting payloads of 50 bytes or less without LTE connectivity.\n\nRecall — AI Study Assistant Chrome Extension\nOctober 2026 – Present\nJava 21, Spring Boot, React, TypeScript, PostgreSQL, Vite\n• Built a Manifest V3 side-panel extension that generates fill-in-the-blank quizzes from pasted or uploaded course notes.\n• Added optional hints and retries for missed questions. Built a Spring Boot REST API and PostgreSQL storage for quizzes, questions, and attempts.\n\nAutonomous Drone Software & Computer Vision Bootcamp — WARG\nSeptember 2026\nPython, NumPy, PyTest, Git, YAML, CI/CD\n• Implemented a simulated camera sensor with an abstract interface and three-channel uint8 frame generation.\n• Developed waypoint utility tests with over 90% branch coverage and eliminated 12 of 12 mutants in mutation testing.",
+  "experience": "Junior Developer Intern — MJVA Technology Ltd.\nJune 2026 – September 2026 · Richmond Hill, Ontario\n\nCamp Counsellor — City of Richmond Hill\nMay 2025 – August 2026\n• Led daily programs for children ages 4–12 and maintained activity schedules.\n• Worked with staff, supervisors, and parents to resolve issues and adapt to changing needs.",
+  "extracurriculars": "WATonomous — Robot Navigation & LiDAR Mapping\nSeptember 2026\nBuilt a C++ and ROS 2 autonomous navigation pipeline with LiDAR mapping and obstacle-aware path planning.\n\nWARG — Autonomous Drone Software\nSeptember 2026 – Present\nWorked on behaviour-tree telemetry, air-to-ground communication, and drone software testing. Completed the software and computer vision bootcamp.",
+  "github": "https://github.com/aidenzhangg",
+  "linkedin": "https://www.linkedin.com/in/aidenzhangg",
+  "photo": "",
+  "gallery": [],
+  "resume": "/Aiden-Zhang-Resume.pdf",
+  "portfolio": [
+    {
+      "id": "food-recognition",
+      "title": "Food Recognition & Nutritional Analysis",
+      "description": "Live food detection using YOLO11, with nutrition feedback and text-to-speech. Python, PyTorch, OpenCV, and TensorFlow.",
+      "url": "",
+      "image": ""
+    },
+    {
+      "id": "robot-navigation",
+      "title": "Autonomous Robot Navigation",
+      "description": "LiDAR mapping, A* pathfinding, and Pure Pursuit control in C++ and ROS 2 for WATonomous.",
+      "url": "",
+      "image": ""
+    },
+    {
+      "id": "recall",
+      "title": "Recall — AI Study Assistant",
+      "description": "A React and TypeScript Chrome extension that creates quizzes from course notes, backed by Spring Boot and PostgreSQL.",
+      "url": "",
+      "image": ""
+    },
+    {
+      "id": "drone-telemetry",
+      "title": "Drone Behaviour Tree Telemetry",
+      "description": "A compact MAVLink telemetry pipeline for monitoring autonomous drone decision paths. Python and ROS 2.",
+      "url": "",
+      "image": ""
+    }
+  ],
+  "contentVersion": 1
+}
