@@ -78,7 +78,7 @@ function App() {
   const [search, setSearch] = useState('')
   const [searchMessage, setSearchMessage] = useState('')
   function findSection(e: FormEvent) { e.preventDefault(); const found = tabs.find(item => (item === 'About' ? 'about' : item.toLowerCase()).includes(search.trim().toLowerCase())); if (found && search.trim()) { navigate(found); setSearchMessage('') } else { setSearchMessage('Choose About, Projects, Technical Skills, Experience, Extracurriculars, Certifications, Resume, Portfolio, Education, or Contact.'); } }
-  const [locked, setLocked] = useState(true)
+  const [locked, setLocked] = useState(() => new URLSearchParams(window.location.search).get('message') !== 'submitted')
   const [unlocking, setUnlocking] = useState(false)
   const unlockTimer = useRef<number | undefined>(undefined)
   useEffect(() => () => window.clearTimeout(unlockTimer.current), [])
