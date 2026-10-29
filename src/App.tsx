@@ -72,7 +72,7 @@ function TeamBadge({ name }: { name: string }) {
  return <span className="team-logo-badge"><img src={team === 'WARG' ? '/icons/warg.png' : '/icons/watonomous.png'} alt="" width="36" height="28"/><span>{team}</span></span>
 }
 function ProjectPreview({ title }: { title: string }) {
- if (title === 'Windows UI Personal Website') return <div className="project-image-space website-project-preview"><img src="/projects/personal-website/desktop.png" alt="Windows-inspired personal portfolio preview" width="1536" height="960" loading="lazy"/></div>
+ if (title === 'Personal Website Windows UI Inspired') return <div className="project-image-space website-project-preview"><img src="/projects/personal-website/desktop.png" alt="Windows-inspired personal portfolio preview" width="1536" height="960" loading="lazy"/></div>
  return <div className="project-image-space" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8" cy="8" r="1.5"/><path d="m3 17 5-5 4 4 4-6 5 7"/></svg><span>Project photo</span></div>
 }
 function readSavedMedia(): Pick<Profile, 'photo' | 'gallery'> {
