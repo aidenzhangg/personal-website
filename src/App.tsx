@@ -22,13 +22,45 @@ function readRoute() {
  return { tab, slug: tab === 'Projects' && projects.some(project => project.slug === slug) ? slug : null }
 }
 const skillIcons: Record<string, string> = {
- Java: 'java', Python: 'python', 'C++': 'cplusplus', SQL: 'postgresql', HTML: 'html5', CSS: 'css3', TypeScript: 'typescript', JavaScript: 'javascript',
+ Java: 'java', Python: 'python', 'C++': 'cplusplus', SQL: 'sql', HTML: 'html5', CSS: 'css3', TypeScript: 'typescript', JavaScript: 'javascript',
  React: 'react', 'Spring Boot': 'spring', PyTorch: 'pytorch', TensorFlow: 'tensorflow', 'scikit-learn': 'scikitlearn', OpenCV: 'opencv', 'ROS 2': 'ros', pandas: 'pandas', NumPy: 'numpy',
- Git: 'git', GitHub: 'github', Docker: 'docker', PyCharm: 'pycharm', Eclipse: 'eclipse', Vite: 'vitejs', 'Chrome DevTools': 'chrome', 'VS Code': 'vscode', PostgreSQL: 'postgresql', PyTest: 'pytest', YAML: 'yaml',
+ 'Arduino UNO': 'arduino', 'Arduino IDE': 'arduino', 'Java 21': 'java', Git: 'git', GitHub: 'github', Docker: 'docker', PyCharm: 'pycharm', Eclipse: 'eclipse', Vite: 'vitejs', 'Chrome DevTools': 'chrome', 'VS Code': 'vscode', PostgreSQL: 'sql', PyTest: 'pytest', YAML: 'yaml',
 }
 function SkillIcon({ name }: { name: string }) {
   const [failed, setFailed] = useState(false)
-  return skillIcons[name] && !failed ? <img src={`/icons/tech/${skillIcons[name]}.svg`} alt="" width="28" height="28" onError={() => setFailed(true)}/> : <span className="skill-initial" aria-hidden="true">{name.replace(/[^A-Za-z0-9]/g, '').slice(0, 2)}</span>
+  const normalized = name.trim().toLowerCase()
+  const key = Object.keys(skillIcons).find(skill => skill.toLowerCase() === normalized)
+  const icon = key ? skillIcons[key] : undefined
+  const paths: Record<string, string> = {
+    Marketing: 'M3 20h18M6 16v-4m6 4V9m6 7V5M4 8l6-4 5 2 5-4',
+    'Public speaking': 'm3 9 13-5v16L3 15V9Zm0 0v6h5l2 6h3l-2-7m8-6 3-2m-3 10 3 2',
+    Innovation: 'M9 18h6m-6 3h6M8 14a6 6 0 1 1 8 0l-1 3H9l-1-3Z',
+    Improvisation: 'm13 2-9 12h7l-1 8 10-13h-7l0-7Z',
+    Leadership: 'M12 3a3 3 0 1 0 0 6 3 3 0 0 0 0-6M5 21v-3a7 7 0 0 1 14 0v3M3 8v8m18-8v8',
+    Communication: 'M3 4h18v12H9l-6 5V4Zm4 4h10M7 12h7',
+    Teaching: 'M4 4h16v12H4V4Zm5 5 3 3 5-5M8 21l4-5 4 5',
+    Teamwork: 'M8 4a3 3 0 1 0 0 6 3 3 0 0 0 0-6m8 0a3 3 0 1 0 0 6 3 3 0 0 0 0-6M2 21v-3a6 6 0 0 1 12 0v3m0-8a6 6 0 0 1 8 5v3',
+    'Machine learning': 'M8 3h8v5H8V3ZM3 16h6v5H3v-5Zm12 0h6v5h-6v-5ZM12 8v4M6 16v-4h12v4',
+    'Customer service': 'M4 13v-2a8 8 0 0 1 16 0v2M4 12H2v6h4v-6H4Zm16 0h2v6h-4v-6h2Zm0 6v3h-7',
+    'Event planning': 'M4 5h16v16H4V5Zm4-3v6m8-6v6M4 11h16m-12 4h3m3 0h2',
+    Adaptability: 'M4 8a8 8 0 0 1 14-3l3 3M21 3v5h-5M20 16a8 8 0 0 1-14 3l-3-3m0 5v-5h5',
+    Discipline: 'M5 4h14v17H5V4Zm4-2h6v4H9V2Zm0 12 2 2 4-5',
+    Performance: 'M9 18V5l11-2v13M9 18c0 4-7 4-7 0s7-4 7 0m11-2c0 4-7 4-7 0s7-4 7 0',
+    Organization: 'M3 3h7v7H3V3Zm11 0h7v7h-7V3ZM3 14h7v7H3v-7Zm11 0h7v7h-7v-7Z',
+    Design: 'm4 20 3-8L18 1l5 5-11 11-8 3Zm3-8 5 5M3 3h6M3 3v6',
+    Adobe: 'M2 21 9 3h6l7 18h-5l-5-13-3 9h5l2 4H2Z',
+    'Attention to detail': 'M15 15l6 6M10 3a7 7 0 1 0 0 14 7 7 0 0 0 0-14m-3 7 2 2 4-4',
+    SQL: 'M20 5c0 2-16 2-16 0s16-2 16 0Zm-16 0v14c0 2 16 2 16 0V5M4 12c0 2 16 2 16 0',
+    'Signal Processing': 'M2 12h3l3-8 5 16 3-8h6',
+    I2C: 'M3 7h18M3 17h18M7 4v6m10 4v6M7 14v6m10-16v6',
+    UART: 'M3 8h14m-3-3 3 3-3 3M21 16H7m3-3-3 3 3 3',
+    'Serial Communication': 'M3 8h14m-3-3 3 3-3 3M21 16H7m3-3-3 3 3 3',
+    ADC: 'M2 16h5v-5h5V7h5V3h5M2 21h20',
+    'Embedded Programming': 'M6 6h12v12H6V6Zm3-4v4m6-4v4M9 18v4m6-4v4M2 9h4m-4 6h4m12-6h4m-4 6h4M9 9h6v6H9V9Z',
+  }
+  const pathKey = Object.keys(paths).find(skill => skill.toLowerCase() === normalized)
+  if (name === 'SQL' || pathKey || !icon || failed) return <svg className="skill-symbol" width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={(pathKey ? paths[pathKey] : undefined) || 'm8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18'}/></svg>
+  return <img className={['github','ros'].includes(icon) ? 'tech-icon tech-icon-light' : 'tech-icon'} src={`/icons/tech/${icon}.svg`} alt="" width="28" height="28" onError={() => setFailed(true)}/>
 }
 function TeamBadge({ name }: { name: string }) {
  const team = name.includes('WATonomous') ? 'WATonomous' : name.includes('WARG') ? 'WARG' : null
@@ -107,7 +139,7 @@ function App() {
     const [title, ...body] = block.split('\n').filter(Boolean)
     const bullets = body.filter(line => line.startsWith('•'))
     const softSkills = body.find(line => line.startsWith('Skills: '))?.slice(8)
-    return <article key={index}><div className="entry-title-row">{label === "Design Teams" && <TeamBadge name={title}/>}<h2>{title}</h2></div>{body.filter(line => !line.startsWith('•') && !line.startsWith('Skills: ')).map((line, i) => <p key={i}>{line}</p>)}{softSkills && <div className="entry-strengths" aria-label="Soft skills"><ul>{softSkills.split(',').map(skill => <li key={skill.trim()}>{skill.trim()}</li>)}</ul></div>}{bullets.length > 0 && <ul>{bullets.map((line, i) => <li key={i}>{line.replace(/^•\s*/, '')}</li>)}</ul>}{label === 'Activities' && title.includes('DECA') && <div className="activity-pdf"><div className="activity-pdf-title"><Icon name="Resume" size={32}/><div><h3>Bayview DECA Business Report</h3><span>PDF document</span></div></div><div className="activity-pdf-actions"><a className="primary" href="/Bayview-DECA-Business-Report.pdf" target="_blank" rel="noreferrer">View Report (PDF)</a><a className="secondary" href="/Bayview-DECA-Business-Report.pdf" download>Download PDF</a></div></div>}</article>
+    return <article key={index}><div className="entry-title-row">{label === "Design Teams" && <TeamBadge name={title}/>}<h2>{title}</h2></div>{body.filter(line => !line.startsWith('•') && !line.startsWith('Skills: ')).map((line, i) => <p key={i}>{line}</p>)}{softSkills && <div className="entry-strengths" aria-label="Soft skills"><ul>{softSkills.split(',').map(skill => <li key={skill.trim()} className="activity-skill-token"><SkillIcon name={skill.trim()}/><span>{skill.trim().replace(/^\S+/, word => word.toUpperCase())}</span></li>)}</ul></div>}{bullets.length > 0 && <ul>{bullets.map((line, i) => <li key={i}>{line.replace(/^•\s*/, '')}</li>)}</ul>}{label === 'Activities' && title.includes('DECA') && <div className="activity-pdf"><div className="activity-pdf-title"><Icon name="Resume" size={32}/><div><h3>Bayview DECA Business Report</h3><span>PDF document</span></div></div><div className="activity-pdf-actions"><a className="primary" href="/Bayview-DECA-Business-Report.pdf" target="_blank" rel="noreferrer">View Report (PDF)</a><a className="secondary" href="/Bayview-DECA-Business-Report.pdf" download>Download PDF</a></div></div>}</article>
   })}</div> : <div className="empty-state"><h2>No {label.toLowerCase()} added yet</h2></div>
   const dateParts = new Intl.DateTimeFormat('en-CA', { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'America/Toronto' }).formatToParts(now)
   const dateValue = (part: string) => dateParts.find(p => p.type === part)?.value || ''
