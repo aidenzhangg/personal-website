@@ -77,3 +77,6 @@ button.sidebar-email{background:none;text-align:left;cursor:pointer;width:100%}b
 .lock-clock>p{font-family:WindowsLockClock,'Segoe UI Variable','Segoe UI',sans-serif;font-weight:400}
 @media(max-width:767px){.resume-document{grid-template-columns:auto minmax(0,1fr)}.resume-document>.resume-pdf-actions{grid-column:1/-1;width:100%;justify-self:stretch}.resume-pdf-actions>a{flex:1}.lock-clock>time{font-size:68px}}
 @media(max-height:600px){.lock-clock>time{font-size:53px}}
+
+.lock-account:has(.lock-degree) h1{margin-bottom:12px}.lock-account .lock-degree{font-family:'Segoe UI Variable','Segoe UI',sans-serif;font-size:clamp(16px,1.7vw,21px);font-weight:400;line-height:1.5;color:#c5bdc0;margin:0 0 28px}
+
