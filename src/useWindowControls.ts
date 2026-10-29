@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent, type PointerEvent } from 'react'
+import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent, type PointerEvent } from 'react'
 
 type Position = { x: number; y: number; width: number }
 export function useWindowControls() {
@@ -22,9 +22,10 @@ export function useWindowControls() {
   }, [])
   function restore() { window.clearTimeout(timer.current); setMinimizing(false); setMinimized(false); setVisible(true) }
   function minimize() {
-    if (minimizing) return
+    if (minimizing || !visible) return
+    window.clearTimeout(timer.current)
     setDragging(false); drag.current = null
-    setMinimizing(true)
+    setMinimized(true); setMinimizing(true)
     const duration = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 200
     timer.current = window.setTimeout(() => { setVisible(false); setMinimized(true); setMinimizing(false) }, duration)
   }
