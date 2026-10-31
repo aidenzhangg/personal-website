@@ -109,3 +109,6 @@ button.sidebar-email{background:none;text-align:left;cursor:pointer;width:100%}b
 
 
 .resume-pdf-actions>button{min-height:46px;padding:12px 16px;font-size:13px;white-space:nowrap}.resume-pdf-actions>button:disabled{opacity:.5;cursor:default}@media(max-width:767px){.resume-pdf-actions>button{flex:1}}
+
+/* Subject-specific cover crops; full original images stay available on project pages. */
+.abort-project-preview{padding:14px;background:#111;justify-content:center}.abort-cover-crop{width:100%;aspect-ratio:750/367;overflow:hidden;border:1px solid #49313c;border-radius:4px;position:relative}.abort-cover-crop>img{display:block;width:230.667%;max-width:none;height:auto}.bedside-project-preview>img{object-fit:cover;object-position:60% 82%}.hardware-prototype>a{max-width:760px;margin-inline:auto}.hardware-prototype img{max-height:760px}.project-media-figure:has(img[src*="abort-command-handling"])>a{padding:10px;background:#171717}.project-media-figure:has(img[src*="abort-command-handling"]) img{max-height:none}

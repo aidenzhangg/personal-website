@@ -75,11 +75,11 @@ function TeamBadge({ name }: { name: string }) {
  return <span className="team-logo-badge"><img src={team === 'WARG' ? '/icons/warg.png' : '/icons/watonomous.png'} alt="" width="36" height="28"/><span>{team}</span></span>
 }
 function ProjectPreview({ title }: { title: string }) {
- if (title === 'Emergency Abort System - WARG') return <div className="project-image-space website-project-preview"><img src="/projects/emergency-abort/abort-command-handling.png" alt="Airside logs receiving an ABORT command and entering abort handling" loading="lazy"/></div>
+ if (title === 'Emergency Abort System - WARG') return <div className="project-image-space website-project-preview abort-project-preview"><div className="abort-cover-crop"><img src="/projects/emergency-abort/abort-command-handling.png" alt="Airside logs receiving an ABORT command and entering abort handling" loading="lazy"/></div></div>
 
  if (title === 'Autonomous Robot Navigation & LiDAR Mapping - WATonomous') return <div className="project-image-space website-project-preview"><img src="/projects/robot-navigation/navigation-preview.jpg" alt="Foxglove view of the robot navigating a mapped obstacle arena" loading="lazy"/></div>
  if (title === 'ROS 2 Behaviour Tree Telemetry Reporter - WARG') return <div className="project-image-space website-project-preview"><img src="/projects/ros2-telemetry/takeoff-to-waypoint.png" alt="Mission Planner receiving behaviour telemetry during simulation" loading="lazy"/></div>
- if (title === 'Bedside Patient Monitoring System') return <div className="project-image-space website-project-preview"><img src="/projects/bedside-monitor/oled-pulse-sensor-wiring.jpeg" alt="Arduino bedside monitor wiring prototype" loading="lazy"/></div>
+ if (title === 'Bedside Patient Monitoring System') return <div className="project-image-space website-project-preview bedside-project-preview"><img src="/projects/bedside-monitor/oled-pulse-sensor-wiring.jpeg" alt="Arduino bedside monitor wiring prototype" loading="lazy"/></div>
  if (title === 'Personal Website Windows UI Inspired') return <div className="project-image-space website-project-preview"><img src="/projects/personal-website/desktop.png" alt="Windows-inspired personal portfolio preview" width="1536" height="960" loading="lazy"/></div>
  return <div className="project-image-space" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8" cy="8" r="1.5"/><path d="m3 17 5-5 4 4 4-6 5 7"/></svg><span>Project photo</span></div>
 }
