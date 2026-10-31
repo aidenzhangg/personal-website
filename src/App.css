@@ -104,3 +104,8 @@ button.sidebar-email{background:none;text-align:left;cursor:pointer;width:100%}b
 .telemetry-task-list{padding-left:20px;font-size:14px;line-height:1.9}.telemetry-task-list li{margin-bottom:14px}.telemetry-task-list strong{color:#ead6df;font-weight:600}.telemetry-state-detail{display:block;font-size:12px;color:#bba9b2;line-height:1.7;margin-top:7px}.telemetry-states dd strong{font-size:12px;font-weight:500}
 
 .robot-pipeline{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.robot-pipeline article{padding:20px;border:1px solid #4b303d;background:#221a1f;border-radius:6px;min-width:0}.robot-pipeline h3{font-size:16px;color:#ecd8e1;margin-bottom:10px}.robot-pipeline article p{margin:0 0 14px;font-size:13px}.robot-pipeline dl{margin:0}.robot-pipeline dl>div{margin-top:10px}.robot-pipeline dt{font-size:10px;color:#b49aa7;text-transform:uppercase;letter-spacing:1px}.robot-pipeline dd{margin:5px 0 0;font-size:12px;color:#e8b8c9;overflow-wrap:anywhere}@media(max-width:767px){.robot-pipeline{grid-template-columns:1fr}}
+
+.telemetry-states dt{flex:0 0 auto;white-space:nowrap}.telemetry-states dt code{white-space:nowrap;overflow-wrap:normal;word-break:normal}.telemetry-states dd{min-width:0;flex:1}
+
+
+.resume-pdf-actions>button{min-height:46px;padding:12px 16px;font-size:13px;white-space:nowrap}.resume-pdf-actions>button:disabled{opacity:.5;cursor:default}@media(max-width:767px){.resume-pdf-actions>button{flex:1}}
