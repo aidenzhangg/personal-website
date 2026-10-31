@@ -75,6 +75,8 @@ function TeamBadge({ name }: { name: string }) {
  return <span className="team-logo-badge"><img src={team === 'WARG' ? '/icons/warg.png' : '/icons/watonomous.png'} alt="" width="36" height="28"/><span>{team}</span></span>
 }
 function ProjectPreview({ title }: { title: string }) {
+ if (title === 'Computer Vision Food Recognition & Nutritional Analysis') return <div className="project-image-space website-project-preview food-project-preview"><img src="/projects/food-health/food-health-checker.png" alt="Food Health Checker showing live egg detection and nutrition facts" width="1307" height="847" loading="lazy"/></div>
+
  if (title === 'Emergency Abort System - WARG') return <div className="project-image-space website-project-preview abort-project-preview"><div className="abort-cover-crop"><img src="/projects/emergency-abort/abort-command-handling.png" alt="Airside logs receiving an ABORT command and entering abort handling" loading="lazy"/></div></div>
 
  if (title === 'Autonomous Robot Navigation & LiDAR Mapping - WATonomous') return <div className="project-image-space website-project-preview"><img src="/projects/robot-navigation/navigation-preview.jpg" alt="Foxglove view of the robot navigating a mapped obstacle arena" loading="lazy"/></div>
