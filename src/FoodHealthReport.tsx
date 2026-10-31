@@ -1,6 +1,6 @@
 import { ProjectPhotos } from './ProjectPhotos'
 
-export function FoodHealthReport({ repository }: { repository?: string }) {
+export function FoodHealthReport() {
   return <section className="telemetry-report" aria-label="Food Health Checker project report">
     <ProjectPhotos title="Computer Vision Food Recognition & Nutritional Analysis"/>
     <p className="telemetry-summary">Built a live webcam application that recognizes food and presents nutrition information alongside the camera feed. The project combines a fine-tuned YOLO11 detector, an OpenCV video pipeline, and text-to-speech feedback to turn model predictions into an interactive food information tool.</p>
@@ -10,7 +10,7 @@ export function FoodHealthReport({ repository }: { repository?: string }) {
       <div><strong>5 categories</strong><span>Multi-item food detection</span></div>
       <div><strong>6 participants</strong><span>Five-month pilot</span></div>
     </div>
-    <div className="project-quick-actions"><button className="primary" onClick={() => document.getElementById('food-health-demo')?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' })}>Watch demo</button>{repository && <a className="project-github-link" href={repository} target="_blank" rel="noreferrer"><img className="app-icon app-icon-github" src="/icons/github.svg" width="21" height="21" alt="" aria-hidden="true"/><span>View source on GitHub</span></a>}</div>
+    <div className="project-quick-actions"><button className="primary" onClick={() => document.getElementById('food-health-demo')?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' })}>Watch demo</button></div>
     <section className="project-contribution-summary"><h2>What I built</h2><ul><li><strong>Detection:</strong> Fine-tuned YOLO11 using 245 hand-labelled images and connected it to a live OpenCV webcam pipeline</li><li><strong>Application:</strong> Turned bounding boxes and class predictions into a nutrition display with confidence scores and text-to-speech</li><li><strong>Evaluation:</strong> Measured detection quality on a held-out set and processing speed across 300 frames, alongside a six-participant pilot</li></ul></section>
     <section className="food-full-writeup" aria-label="Full project write-up"><h2>Full project write-up</h2>
     <section className="telemetry-validation"><h2>The idea</h2><p>I wanted to connect computer vision to something people could interact with directly. A visitor holds a supported food in front of the camera, sees a detection box and confidence score, and reads the corresponding nutrition information without switching away from the live view.</p><p>The application supports five food categories and can detect multiple items in a frame. The interface places recognition and nutrition side by side, making it easy to see which food the displayed information refers to.</p></section>
