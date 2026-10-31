@@ -75,6 +75,8 @@ function TeamBadge({ name }: { name: string }) {
  return <span className="team-logo-badge"><img src={team === 'WARG' ? '/icons/warg.png' : '/icons/watonomous.png'} alt="" width="36" height="28"/><span>{team}</span></span>
 }
 function ProjectPreview({ title }: { title: string }) {
+ if (title === 'Emergency Abort System - WARG') return <div className="project-image-space website-project-preview"><img src="/projects/emergency-abort/abort-command-handling.png" alt="Airside logs receiving an ABORT command and entering abort handling" loading="lazy"/></div>
+
  if (title === 'Autonomous Robot Navigation & LiDAR Mapping - WATonomous') return <div className="project-image-space website-project-preview"><img src="/projects/robot-navigation/navigation-preview.jpg" alt="Foxglove view of the robot navigating a mapped obstacle arena" loading="lazy"/></div>
  if (title === 'ROS 2 Behaviour Tree Telemetry Reporter - WARG') return <div className="project-image-space website-project-preview"><img src="/projects/ros2-telemetry/takeoff-to-waypoint.png" alt="Mission Planner receiving behaviour telemetry during simulation" loading="lazy"/></div>
  if (title === 'Bedside Patient Monitoring System') return <div className="project-image-space website-project-preview"><img src="/projects/bedside-monitor/oled-pulse-sensor-wiring.jpeg" alt="Arduino bedside monitor wiring prototype" loading="lazy"/></div>
