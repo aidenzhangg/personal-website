@@ -114,7 +114,6 @@ function HoldFrames() {
 export function FoodHowItWorks() {
   return <div className="fv">
     <figure className="project-media-figure">
-      <h3>From webcam frame to nutrition panel</h3>
       <div className="fv-card"><Pipeline/></div>
       <figcaption>Each frame passes through these six steps in a background camera thread. Speech runs in its own queue so reading a result never pauses detection</figcaption>
     </figure>
