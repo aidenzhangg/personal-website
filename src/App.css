@@ -183,3 +183,18 @@ button.sidebar-email{background:none;text-align:left;cursor:pointer;width:100%}b
 .project-next-navigation{margin-top:36px;padding-top:24px;border-top:1px solid #4b2e3c}.project-next-navigation>a{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 24px;min-height:88px;background:#291a22;border:1px solid #704054;border-radius:7px;transition:background .15s,border-color .15s}.project-next-navigation>a:hover{background:#3b2030;border-color:#c06989}.project-next-navigation small{display:block;color:#d49db4;font-size:12px;margin-bottom:8px}.project-next-navigation strong{display:block;font-size:18px;font-weight:600;line-height:1.55;color:#f4e3eb;overflow-wrap:anywhere}.project-next-navigation svg{flex-shrink:0;color:#e8aac1}@media(max-width:767px){.project-next-navigation{margin-top:28px;padding-top:20px}.project-next-navigation>a{padding:18px;min-height:90px;gap:14px}.project-next-navigation strong{font-size:17px}}
 
 .project-next-navigation{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.project-next-navigation>a{min-width:0}.project-next-navigation .project-previous-link{justify-content:flex-start}.project-next-navigation strong{font-size:16px}@media(max-width:767px){.project-next-navigation{grid-template-columns:1fr}.project-next-navigation strong{font-size:17px}}
+
+/* Open directly in the full-page portfolio with a slimmer bottom bar. */
+@media(min-width:768px){
+ .win-maximized{inset:0 0 48px;border-radius:0;border-left:0;border-right:0;border-top:0}
+ .win-taskbar{height:48px;padding:3px 12px;bottom:0}
+ .win-taskbar-apps{gap:3px}.win-taskbar-apps>button,.win-taskbar-apps>a{width:36px;min-height:36px;height:36px}
+ .win-taskbar-apps .app-icon{width:22px;height:22px}.win-taskbar-apps .win-logo{width:21px;height:21px}.win-taskbar-apps .app-icon-github{width:21px;height:21px}
+ .win-taskbar .tray-icons{min-height:36px;gap:8px}.system-tray{font-size:10px}.system-tray time{font-size:10px;line-height:1.4}
+ .win-start,.restored-settings{bottom:58px;max-height:calc(100dvh - 72px)}.minimized-preview{bottom:43px}
+}
+@media(max-width:767px){
+ .win-taskbar{height:calc(54px + env(safe-area-inset-bottom));padding-top:3px;padding-bottom:calc(3px + env(safe-area-inset-bottom))}
+ .win-desktop{padding-bottom:calc(66px + env(safe-area-inset-bottom))}
+ .win-start,.restored-settings{bottom:calc(64px + env(safe-area-inset-bottom))}
+}

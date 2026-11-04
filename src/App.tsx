@@ -1,4 +1,4 @@
-import { useEffect, useEffectEvent, useRef, useState, type FormEvent } from 'react'
+import { useEffect, useState, type FormEvent } from 'react'
 import './App.css'
 import resumeProfile from './profile.json'
 import { ProjectPhotos } from './ProjectPhotos'
@@ -136,11 +136,6 @@ function App() {
   const [searchMessage, setSearchMessage] = useState('')
   function findSection(e: FormEvent) { e.preventDefault(); const found = search.trim() ? matchSections(tabs, search)[0] : undefined; if (found) { navigate(found); setSearch(''); setSearchMessage('') } else { setSearchMessage(search.trim() ? 'No matching section. Try Projects, Skills, Resume, or Contact' : 'Enter a section name') } }
   function searchNavigation(e: FormEvent) { e.preventDefault(); const found = navSearch.trim() ? matchSections(tabs, navSearch)[0] : undefined; if (found) navigate(found) }
-  const [locked, setLocked] = useState(() => new URLSearchParams(window.location.search).get('message') !== 'submitted')
-  const [unlocking, setUnlocking] = useState(false)
-  const unlockTimer = useRef<number | undefined>(undefined)
-  useEffect(() => () => window.clearTimeout(unlockTimer.current), [])
-  function unlock() { if (unlocking) return; setUnlocking(true); const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches; unlockTimer.current = window.setTimeout(() => { setLocked(false); setUnlocking(false); windowControls.restore() }, reducedMotion ? 0 : 520) }
   const [startOpen, setStartOpen] = useState(false)
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [brightness, setBrightness] = useState(100)
@@ -148,18 +143,6 @@ function App() {
   const [energy, setEnergy] = useState(false)
   const [accessible, setAccessible] = useState(false)
   const { frame: windowFrameRef, ...windowControls } = useWindowControls()
-  const unlockWithSpace = useEffectEvent((event: KeyboardEvent) => {
-    if (event.code !== 'Space' || event.repeat || event.altKey || event.ctrlKey || event.metaKey || event.isComposing) return
-    const target = event.target
-    if (target instanceof HTMLElement && target.closest('input,textarea,select,[contenteditable="true"]')) return
-    event.preventDefault()
-    unlock()
-  })
-  useEffect(() => {
-    if (!locked) return
-    window.addEventListener('keydown', unlockWithSpace)
-    return () => window.removeEventListener('keydown', unlockWithSpace)
-  }, [locked])
   const windowOpen = windowControls.visible
   const maximized = windowControls.maximized
   useEffect(() => { const close = (event: KeyboardEvent) => { if (event.key === 'Escape') { setSettingsOpen(false); setStartOpen(false); setNavOpen(false) } }; window.addEventListener('keydown', close); return () => window.removeEventListener('keydown', close) }, [])
@@ -171,11 +154,7 @@ function App() {
   const dateParts = new Intl.DateTimeFormat('en-CA', { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'America/Toronto' }).formatToParts(now)
   const dateValue = (part: string) => dateParts.find(p => p.type === part)?.value || ''
   const dateLabel = `${dateValue('year')}-${dateValue('month')}-${dateValue('day')}`
-  const lockDateParts = new Intl.DateTimeFormat('en-GB', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'America/Toronto' }).formatToParts(now)
-  const lockPart = (type: string) => lockDateParts.find(part => part.type === type)?.value || ''
-  const lockDateLabel = `${lockPart('weekday')}, ${lockPart('day')} ${lockPart('month')}`
   const timeLabel = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'America/Toronto' })
-  if (locked) return <main className={`lock-screen ${unlocking ? "lock-exiting" : ""}`}><div className="lock-clock"><time>{timeLabel}</time><p>{lockDateLabel}</p></div><section className="lock-account">{profile.photo && <div className="lock-avatar"><img src={profile.photo} alt={profile.name}/></div>}<h1>Aiden Zhang</h1><p className="lock-degree">Computer Engineering at University of Waterloo</p><button className="primary" onClick={unlock} disabled={unlocking}>Enter <span aria-hidden="true">→</span></button></section><div className="lock-tray"><Icon name="Wifi" size={20}/><Icon name="Sound" size={20}/><Icon name="Battery" size={23}/></div></main>
   return <>
     <a href="#main" className="skip">Skip to content</a>
     <div className={`win-desktop ${night ? "night-light" : ""} ${energy ? "energy-saver" : ""} ${accessible ? "large-text" : ""}`}>
@@ -197,7 +176,7 @@ function App() {
             {tab === 'Contact' && <div className="contact-content"><a className="contact-email" href={`mailto:${profile.email}`}><Icon name="Contact" size={28}/>{profile.email}</a><div className="about-socials">{social('GitHub',profile.github)}{social('LinkedIn',profile.linkedin)}</div><p className="contact-location">{profile.location}, Canada</p><ContactForm email={profile.email}/></div>}
           </>}
       </main></div><div className="win-status"><span>&copy; 2026 Aiden Zhang</span><span><a href="https://icons8.com/icons/fluency" target="_blank" rel="noreferrer">App icons by Icons8</a></span></div></section> : !windowControls.minimized && <button className="reopen-window" onClick={() => navigate('About')}><Icon name="About" size={30}/>Open About</button>}
-      {startOpen && <section className="win-start" aria-label="Start menu"><form className="start-search" onSubmit={findSection}><Icon name="Search" size={17}/><input aria-label="Find a portfolio section" autoFocus placeholder="Find a section" type="search" value={search} onChange={e => { setSearch(e.target.value); setSearchMessage('') }}/><button type="submit" aria-label="Search">→</button></form>{searchMessage && <p role="status">{searchMessage}</p>}<h2>{search.trim() ? 'Search results' : 'Pinned'}</h2>{search.trim() ? <div className="start-search-results" aria-live="polite">{matchSections(tabs, search).length ? matchSections(tabs, search).map((item, index) => <button className={index === 0 ? 'best-match' : ''} key={item} onClick={() => navigate(item)}><Icon name={item} size={30}/><span><strong>{item}</strong><small>{index === 0 ? 'Best match' : 'Portfolio section'}</small></span><span className="search-open-label">Open</span></button>) : <p className="start-no-results">No sections found. Try About, Projects, or Skills</p>}</div> : <div className="start-app-grid">{tabs.map(item => <button key={item} onClick={() => navigate(item)}><Icon name={item} size={25}/><span>{item}</span></button>)}</div>}<button className="start-lock" onClick={() => { setLocked(true); setStartOpen(false) }}>Lock screen</button></section>}
+      {startOpen && <section className="win-start" aria-label="Start menu"><form className="start-search" onSubmit={findSection}><Icon name="Search" size={17}/><input aria-label="Find a portfolio section" autoFocus placeholder="Find a section" type="search" value={search} onChange={e => { setSearch(e.target.value); setSearchMessage('') }}/><button type="submit" aria-label="Search">→</button></form>{searchMessage && <p role="status">{searchMessage}</p>}<h2>{search.trim() ? 'Search results' : 'Pinned'}</h2>{search.trim() ? <div className="start-search-results" aria-live="polite">{matchSections(tabs, search).length ? matchSections(tabs, search).map((item, index) => <button className={index === 0 ? 'best-match' : ''} key={item} onClick={() => navigate(item)}><Icon name={item} size={30}/><span><strong>{item}</strong><small>{index === 0 ? 'Best match' : 'Portfolio section'}</small></span><span className="search-open-label">Open</span></button>) : <p className="start-no-results">No sections found. Try About, Projects, or Skills</p>}</div> : <div className="start-app-grid">{tabs.map(item => <button key={item} onClick={() => navigate(item)}><Icon name={item} size={25}/><span>{item}</span></button>)}</div>}</section>}
       {settingsOpen && <QuickSettings close={() => setSettingsOpen(false)} brightness={brightness} setBrightness={setBrightness} night={night} setNight={setNight} energy={energy} setEnergy={setEnergy} accessible={accessible} setAccessible={setAccessible}/>}
       <footer className="win-taskbar"><div className="win-taskbar-apps"><button aria-label="Open Start menu" aria-expanded={startOpen} onClick={() => { setStartOpen(!startOpen); setSettingsOpen(false) }}><img src="/icons/windows.svg" alt="" className="win-logo"/></button>{([...new Set<Tab>(['About','Technical Skills','Projects','Resume', ...(windowControls.minimized ? [tab] : [])])]).map(item => <button key={item} onClick={() => { if (tab === item && windowOpen) windowControls.minimize(); else if (tab === item && windowControls.minimized) windowControls.restore(); else navigate(item) }} className={tab === item && (windowOpen || windowControls.minimized) ? `task-selected ${windowControls.minimized ? 'task-is-minimized' : ''}` : ''} aria-label={tab === item && windowControls.minimized ? `Restore ${item}` : `Open ${item}`} title={item}><Icon name={item} size={23}/>{tab === item && windowControls.minimized && <span className="minimized-preview"><span className="minimized-preview-title"><Icon name={item} size={17}/>{activeProject ? activeProject.title : item}</span><span className="minimized-preview-body"><Icon name={item} size={37}/><span>Minimized</span></span><span className="minimized-preview-hint">Click to restore</span></span>}</button>)}<span className="task-separator"/>{(['GitHub','LinkedIn'] as const).map(label => { const url = label === 'GitHub' ? profile.github : profile.linkedin; return url ? <a key={label} href={url} aria-label={label} target="_blank" rel="noreferrer"><Icon name={label} size={23}/></a> : null })}<button onClick={() => navigate('Contact')} aria-label="Leave me a message" title="Contact"><Icon name="Contact" size={23}/></button></div><div className="system-tray"><button className="tray-icons" aria-label="Open quick settings" aria-expanded={settingsOpen} onClick={() => { setSettingsOpen(!settingsOpen); setStartOpen(false) }}><Icon name="Wifi" size={17}/><Icon name="Sound" size={17}/><Icon name="Battery" size={20}/></button><div><time>{timeLabel}</time><time>{dateLabel}</time></div></div></footer>
     </div>
