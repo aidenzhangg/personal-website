@@ -96,6 +96,37 @@ function Drone() {
   </svg>
 }
 
+// Static card cover: the abort branch has taken over and the mission branch is halted
+export function AbortCover() {
+  const box = (x: number, y: number, w: number, label: string, kind: 'root' | 'abort' | 'done' | 'halted') =>
+    <g className={`ac-${kind}`}><rect x={x} y={y} width={w} height="22" rx="4"/><text x={x + w / 2} y={y + 15}>{label}</text></g>
+  return <svg className="abort-cover" viewBox="0 0 320 200" role="img" aria-label="Behaviour tree where the ABORT branch has preempted the mission and the drone is landing">
+    <defs><pattern id="ac-grid" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M16 0H0V16" fill="none" stroke="#1a1418" strokeWidth="1"/></pattern></defs>
+    <rect width="320" height="200" fill="#0c0b0c"/><rect width="320" height="200" fill="url(#ac-grid)"/>
+    <path className="ac-edge-a" d="M110 40 V50 H62 V60 M62 82 V96 H30 V106 M62 96 H96 V106"/>
+    <path className="ac-edge" d="M110 50 H158 V60 M158 82 V90 M150 112 V178 M150 126 H158 M150 148 H158 M150 170 H158"/>
+    {box(60, 18, 100, 'SafetySupervisor', 'root')}
+    {box(22, 60, 80, 'Abort', 'abort')}
+    {box(4, 106, 54, 'Check', 'done')}
+    {box(66, 106, 62, 'AbortLand', 'abort')}
+    {box(122, 60, 72, 'Mission', 'halted')}
+    {box(122, 90, 72, 'Takeoff', 'halted')}
+    {box(158, 115, 64, 'Lapping', 'halted')}
+    {box(158, 137, 64, 'Recon', 'halted')}
+    {box(158, 159, 64, 'LandPhase', 'halted')}
+    <g className="ac-pill"><rect x="226" y="18" width="80" height="22" rx="11"/><text x="266" y="33">ABORT</text></g>
+    <path d="M266 58 V150" stroke="#3a2a31" strokeDasharray="3 4"/>
+    <path className="ac-arrow" d="M266 100 V138 M260 131 L266 139 L272 131"/>
+    <g transform="translate(250 66)">
+      <rect x="11" y="6" width="10" height="5" rx="1.5" fill="#e8dde2"/>
+      <path d="M4 4 L11 8 M28 4 L21 8 M4 13 L11 9 M28 13 L21 9" stroke="#a89aa1" strokeWidth="1.5"/>
+      <ellipse cx="4" cy="3" rx="5" ry="1.2" fill="#d14b5d"/><ellipse cx="28" cy="3" rx="5" ry="1.2" fill="#d14b5d"/>
+    </g>
+    <rect x="236" y="150" width="60" height="4" rx="1" fill="#2a1e23"/>
+    <text className="ac-cap" x="266" y="172">LAND via</text><text className="ac-cap" x="266" y="184">MAVROS</text>
+  </svg>
+}
+
 export function AbortDemo() {
   const [state, setState] = useState(initial)
 
