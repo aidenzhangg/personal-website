@@ -1,0 +1,50 @@
+.nd-demo{background:#0c0c0c;border:1px solid #50303e;border-radius:6px;padding:18px;color:#e8dde2}
+.nd-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1px solid #2c2026}
+.nd-head strong{font-size:15px;font-weight:600}
+.nd-clock{margin-left:12px;font:12px Consolas,'Cascadia Code',monospace;color:#8f7f87}
+.nd-actions{display:flex;gap:8px}
+.nd-actions button{min-height:36px;padding:0 16px;border-radius:4px;font-size:13px;font-weight:600}
+.nd-play{background:#911e2b;color:#fff;box-shadow:0 0 0 1px #c23a4c inset}
+.nd-play:hover{background:#a8283a}
+.nd-reset{background:#171717;color:#d8cdd2;box-shadow:0 0 0 1px #3a2a31 inset}
+.nd-reset:hover{background:#1f1f1f}
+
+.nd-body{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:20px;padding-top:16px}
+@media (max-width:860px){.nd-body{grid-template-columns:1fr}}
+.nd-stage{position:relative;min-width:0}
+.nd-canvas{display:block;width:100%;aspect-ratio:1;border:1px solid #2c2026;border-radius:4px;cursor:crosshair;background:#0b0b0c}
+.nd-hint{position:absolute;top:10px;left:10px;font-size:11px;color:#cfc3c9;background:rgba(12,12,12,.8);border:1px solid #3a2a31;border-radius:3px;padding:3px 8px;pointer-events:none}
+.nd-legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:10px;font-size:11px;color:#a89aa1}
+.nd-legend span{display:inline-flex;align-items:center;gap:6px}
+.nd-sw{display:inline-block;width:12px;height:12px;border-radius:2px}
+.nd-sw-lethal{background:#ff5a6e}
+.nd-sw-inflate{background:rgba(209,75,93,.55)}
+.nd-sw-true{border:1px dashed #6b4a58}
+.nd-sw-lidar{background:#8fd3ff;width:5px;height:5px;margin:0 3px}
+.nd-sw-path{background:#f5b942;height:3px}
+.nd-sw-goal{border:1.5px dashed #5fbf8f;border-radius:50%}
+
+.nd-side{display:flex;flex-direction:column;gap:12px;min-width:0}
+.nd-status{font:600 13px Consolas,'Cascadia Code',monospace;color:#cfe9db;background:#0f1d17;border:1px solid #2f5a45;border-radius:4px;padding:10px 12px}
+.nd-status.nd-bad{color:#ffb3bc;background:#2a1118;border-color:#c23a4c}
+.nd-nodes{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;counter-reset:nd}
+.nd-nodes li{position:relative;border:1px solid #2c2026;border-radius:4px;background:#111;padding:9px 12px 9px 38px;counter-increment:nd}
+.nd-nodes li::before{content:counter(nd);position:absolute;left:10px;top:10px;width:18px;height:18px;border-radius:50%;background:#2a1118;border:1px solid #6b2b36;color:#ff8a98;font-size:11px;font-weight:700;display:grid;place-items:center}
+.nd-nodes b{font-size:13px}
+.nd-nodes code{margin-left:8px;font:11px Consolas,'Cascadia Code',monospace;color:#8f7f87}
+.nd-nodes span{display:block;margin-top:4px;font:12px Consolas,'Cascadia Code',monospace;color:#e8dde2}
+.nd-card{border:1px solid #2c2026;border-radius:4px;background:#111;padding:10px 12px}
+.nd-cap{display:block;font-size:12px;color:#a89aa1;margin-bottom:4px}
+.nd-profile{display:block;width:100%;height:auto}
+.nd-profile text{font:9px Consolas,monospace;fill:#8f7f87}
+.nd-facts{display:flex;flex-direction:column;gap:8px}
+.nd-facts b{display:block;font-size:12px}
+.nd-facts span{display:block;font-size:12px;color:#a89aa1;margin-top:2px}
+
+.nav-cover{display:block;width:100%;height:100%}
+.nc-lethal>*{fill:#ff5a6e;opacity:.92}
+.nc-inflate>*{fill:rgba(209,75,93,.35)}
+.nc-chip{fill:#111;stroke:#3a2a31}
+.nc-chip-on{fill:#2a1118;stroke:#ff5a6e}
+.nc-topic{font:700 8.5px Consolas,'Cascadia Code',monospace;fill:#fff}
+.nc-detail{font:7.5px 'Segoe UI',system-ui,sans-serif;fill:#a89aa1}

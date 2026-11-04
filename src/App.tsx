@@ -6,6 +6,7 @@ import { TelemetryReport } from './TelemetryReport'
 import { RobotNavigationReport } from './RobotNavigationReport'
 import { EmergencyAbortReport } from './EmergencyAbortReport'
 import { AbortCover } from './AbortDemo'
+import { NavCover } from './NavDemo'
 import { FoodHealthReport } from './FoodHealthReport'
 import { ExperienceList } from './ExperienceList'
 import { useWindowControls } from './useWindowControls'
@@ -81,7 +82,7 @@ function ProjectPreview({ title }: { title: string }) {
 
  if (title === 'Emergency Abort System - WARG') return <div className="project-image-space website-project-preview"><AbortCover/></div>
 
- if (title === 'Autonomous Robot Navigation & LiDAR Mapping - WATonomous') return <div className="project-image-space website-project-preview"><img src="/projects/robot-navigation/navigation-preview.jpg" alt="Foxglove view of the robot navigating a mapped obstacle arena" loading="lazy"/></div>
+ if (title === 'Autonomous Robot Navigation & LiDAR Mapping - WATonomous') return <div className="project-image-space website-project-preview"><NavCover/></div>
  if (title === 'ROS 2 Behaviour Tree Telemetry Reporter - WARG') return <div className="project-image-space website-project-preview"><img src="/projects/ros2-telemetry/takeoff-to-waypoint.png" alt="Mission Planner receiving behaviour telemetry during simulation" loading="lazy"/></div>
  if (title === 'Bedside Patient Monitoring System') return <div className="project-image-space website-project-preview bedside-project-preview"><img src="/projects/bedside-monitor/oled-pulse-sensor-wiring.jpeg" alt="Arduino bedside monitor wiring prototype" loading="lazy"/></div>
  if (title === 'Personal Website Windows UI Inspired') return <div className="project-image-space website-project-preview"><img src="/projects/personal-website/desktop.png" alt="Windows-inspired personal portfolio preview" width="1536" height="960" loading="lazy"/></div>
