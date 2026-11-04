@@ -85,7 +85,6 @@ function ProjectPreview({ title }: { title: string }) {
  if (title === 'Autonomous Robot Navigation & LiDAR Mapping - WATonomous') return <div className="project-image-space website-project-preview"><NavCover/></div>
  if (title === 'ROS 2 Behaviour Tree Telemetry Reporter - WARG') return <div className="project-image-space website-project-preview"><img src="/projects/ros2-telemetry/takeoff-to-waypoint.png" alt="Mission Planner receiving behaviour telemetry during simulation" loading="lazy"/></div>
  if (title === 'Bedside Patient Monitoring System') return <div className="project-image-space website-project-preview bedside-project-preview"><img src="/projects/bedside-monitor/oled-pulse-sensor-wiring.jpeg" alt="Arduino bedside monitor wiring prototype" loading="lazy"/></div>
- if (title === 'Personal Website Windows UI Inspired') return <div className="project-image-space website-project-preview"><img src="/projects/personal-website/desktop.png" alt="Windows-inspired personal portfolio preview" width="1536" height="960" loading="lazy"/></div>
  return <div className="project-image-space" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8" cy="8" r="1.5"/><path d="m3 17 5-5 4 4 4-6 5 7"/></svg><span>Project photo</span></div>
 }
 function readSavedMedia(): Pick<Profile, 'photo'> {
