@@ -202,3 +202,7 @@ button.sidebar-email{background:none;text-align:left;cursor:pointer;width:100%}b
  .resume-document{grid-template-columns:32px minmax(0,1fr)}
  .resume-document .resume-pdf-actions>a{flex:1;padding-inline:10px}
 }
+
+/* Document headings share the full-width card's left edge. */
+.win-content:has(>.resume-content)>.page-heading,
+.win-content:has(>.resume-content)>.page-eyebrow{max-width:none;width:100%;margin-left:0;margin-right:0}
