@@ -59,10 +59,10 @@ button.sidebar-email{background:none;text-align:left;cursor:pointer;width:100%}b
 .waterloo-logo.waterloo-crest,.win-sidebar img.app-icon-education,.win-taskbar img.app-icon-education,.start-app-grid img.app-icon-education,.start-search-results img.app-icon-education,.win-titlebar img.app-icon-education,img.app-icon.app-icon-education{filter:grayscale(1)!important;opacity:1!important}.bayview-education{display:flex;align-items:center;gap:28px}.bayview-logo-link{display:flex;align-items:center;justify-content:center;width:85px;flex-shrink:0;min-height:85px}.bayview-logo{width:80px;height:85px;object-fit:contain;filter:grayscale(1) brightness(1.45)}.bayview-education .school-period{margin-bottom:10px}.bayview-education h2{margin-bottom:9px}.app-icon-certifications{object-fit:contain}.certificate-symbol .app-icon-certifications{width:36px;height:40px}@media(max-width:767px){.bayview-education{gap:18px}.bayview-logo-link{width:60px;min-height:74px}.bayview-logo{width:60px;height:74px}.bayview-education h2{font-size:19px}.bayview-education p{font-size:13px}}
 .resume-pdf-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-left:auto}.resume-pdf-actions>a{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:12px 16px;font-size:13px}.resume-pdf-actions .secondary{border-color:#805065;background:#2b1f25;color:#ebd5df}.resume-pdf-actions .secondary:hover{background:#412631}@media(max-width:767px){.resume-pdf-actions{width:100%;margin-left:0}.resume-pdf-actions>a{flex:1;font-size:12px}}
 /* Full-width introduction actions and Windows-native clock typography. */
-.win-content>.plain-about{max-width:none;width:100%;margin-left:0;margin-right:0}.plain-about .identity-links{align-self:stretch;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;max-width:none;margin-left:0;margin-right:0;gap:14px}.identity-links>button,.identity-links>button:not(:first-child),.identity-links>button:last-child{width:100%;min-width:0;min-height:58px;padding:15px 12px;font-size:14px;white-space:normal}.education-card .waterloo-logo-link,.start-app-grid button:has(.app-icon-education),.start-search-results button:has(.app-icon-education){isolation:isolate}.waterloo-logo.waterloo-crest,img.app-icon.app-icon-education{background:transparent;mix-blend-mode:screen;filter:grayscale(1)!important}@media(max-width:1100px) and (min-width:768px){.plain-about .identity-links{gap:10px}.identity-links>button,.identity-links>button:not(:first-child),.identity-links>button:last-child{font-size:12px;padding:14px 9px;min-height:56px}}@media(max-width:767px){.plain-about .identity-links{grid-template-columns:1fr;gap:12px}.identity-links>button,.identity-links>button:not(:first-child),.identity-links>button:last-child{font-size:15px;padding:14px 18px;min-height:55px}}
+.win-content>.plain-about{max-width:840px;width:100%;margin-left:auto;margin-right:auto}.plain-about .identity-links{align-self:stretch;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;max-width:none;margin-left:0;margin-right:0;gap:14px}.identity-links>button,.identity-links>button:not(:first-child),.identity-links>button:last-child{width:100%;min-width:0;min-height:58px;padding:15px 12px;font-size:14px;white-space:normal}.education-card .waterloo-logo-link,.start-app-grid button:has(.app-icon-education),.start-search-results button:has(.app-icon-education){isolation:isolate}.waterloo-logo.waterloo-crest,img.app-icon.app-icon-education{background:transparent;mix-blend-mode:screen;filter:grayscale(1)!important}@media(max-width:1100px) and (min-width:768px){.plain-about .identity-links{gap:10px}.identity-links>button,.identity-links>button:not(:first-child),.identity-links>button:last-child{font-size:12px;padding:14px 9px;min-height:56px}}@media(max-width:767px){.plain-about .identity-links{grid-template-columns:1fr;gap:12px}.identity-links>button,.identity-links>button:not(:first-child),.identity-links>button:last-child{font-size:15px;padding:14px 18px;min-height:55px}}
 
 /* Resume actions occupy the right edge; only the document title grows. */
-.win-content>.resume-content{max-width:none;width:100%}
+.win-content>.resume-content{max-width:960px;width:100%}
 .resume-document{display:grid;grid-template-columns:auto minmax(0,1fr) auto;width:100%;box-sizing:border-box}
 .resume-document>.resume-document-title{min-width:0}
 .resume-document>.resume-pdf-actions{flex:0 0 auto;width:auto;margin-left:0;justify-self:end;justify-content:flex-end}
@@ -205,4 +205,19 @@ button.sidebar-email{background:none;text-align:left;cursor:pointer;width:100%}b
 
 /* Document headings share the full-width card's left edge. */
 .win-content:has(>.resume-content)>.page-heading,
-.win-content:has(>.resume-content)>.page-eyebrow{max-width:none;width:100%;margin-left:0;margin-right:0}
+.win-content:has(>.resume-content)>.page-eyebrow{max-width:960px;width:100%;margin-left:auto;margin-right:auto}
+
+/* Keep every tab in a shared reading column on wide displays. */
+.win-content>div,.win-content>section,.win-content>article{width:100%;max-width:960px;margin-left:auto;margin-right:auto}
+.win-content>.plain-about{max-width:840px;min-height:0!important;padding:24px 0 0}
+.plain-about .pixel-name{font-size:clamp(48px,5vw,80px);max-width:100%}
+.plain-about>p:not(.education-intro):not(.internship-line){max-width:68ch;line-height:1.85;margin:24px 0}
+.plain-about .identity-links{grid-template-columns:1fr;max-width:440px;gap:12px;margin-top:8px;align-self:flex-start}
+.plain-about .identity-links>button{min-height:52px;text-align:center}
+.plain-about .identity-bottom{margin-top:30px;padding-top:22px}
+@media(max-width:767px){
+ .win-content>.plain-about{padding:0}
+ .plain-about .pixel-name{font-size:clamp(38px,10.8vw,64px)}
+ .plain-about .identity-links{max-width:none}
+ .plain-about>p:not(.education-intro):not(.internship-line){margin:18px 0}
+}
