@@ -1,0 +1,15 @@
+.bedside-photo-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:28px}
+@media (max-width:760px){.bedside-photo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.bedside-photo-grid figure{margin:0;min-width:0}
+.bedside-photo-grid a{display:block;background:#0c0c0c;border:1px solid #50303e;border-radius:6px;overflow:hidden}
+.bedside-photo-grid img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover}
+.bedside-photo-grid figcaption{font-size:12px;line-height:1.6;color:#bca9b3;margin-top:8px}
+.bedside-parts{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.bedside-parts div{display:grid;grid-template-columns:minmax(150px,220px) 1fr;gap:14px;padding:10px 14px;border:1px solid #3e2c34;border-radius:5px;background:#151214;font-size:13.5px;line-height:1.7}
+@media (max-width:620px){.bedside-parts div{grid-template-columns:1fr;gap:2px}}
+.bedside-parts dt{font-weight:600;color:#ead6df}
+.bedside-parts dd{margin:0;color:#cfc3c9}
+.bedside-stage{margin-top:6px}
+.bedside-stage h3{font-size:15px;font-weight:600;color:#ead6df;margin:22px 0 6px}
+.bedside-stage p{font-size:14px;line-height:1.9;margin:0}
+.bedside-stage code{white-space:nowrap}
