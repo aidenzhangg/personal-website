@@ -1,3 +1,5 @@
+import './ExperienceList.css'
+
 type Entry = { title: string; date: string; bullets: string[] }
 function parseEntries(value: string): Entry[] {
   return value.split(/\n\s*\n/).filter(Boolean).map(block => {
