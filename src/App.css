@@ -234,3 +234,40 @@ button.sidebar-email{background:none;text-align:left;cursor:pointer;width:100%}b
 .experience-team-grid article>div>span{font-size:14px}
 .team-current-work>a,.team-contribution-links>a{font-size:15px}
 @media(max-width:767px){.experience-team-grid article{padding:18px;gap:14px}}
+
+/* Responsive desktop window and a modest left inset for reading columns. */
+@media(min-width:768px){
+ .win-desktop{padding:32px 4vw 80px}
+ .win-window:not(.win-maximized):not(.win-floating){width:100%;max-width:1800px;height:calc(100dvh - 112px);display:flex;flex-direction:column}
+ .win-window:not(.win-maximized):not(.win-floating) .win-body{flex:1;min-height:0;overflow:hidden}
+ .win-window:not(.win-maximized):not(.win-floating) .win-content{overflow-y:auto}
+ .win-sidebar{overflow-y:auto}
+ .win-content,.win-maximized .win-content{padding-left:40px;padding-right:40px}
+ .win-content>div,.win-content>section,.win-content>article,
+ .win-content>.plain-about,
+ .win-content:has(>.resume-content)>.page-heading,
+ .win-content:has(>.resume-content)>.page-eyebrow{margin-left:min(3vw,48px);margin-right:0;width:calc(100% - min(3vw,48px))}
+}
+/* iPhone: safe-area spacing, clear navigation and comfortable document actions. */
+@media(max-width:767px){
+ .win-titlebar{padding-top:env(safe-area-inset-top);height:calc(44px + env(safe-area-inset-top))}
+ .win-content,.win-floating .win-content,.win-maximized .win-content{padding:24px 20px 32px}
+ .phone-section-nav{gap:3px;padding-inline:12px;overscroll-behavior-x:contain}
+ .phone-section-nav>button,.phone-section-nav>a{padding-inline:11px}
+ .win-sidebar.navigation-open{left:max(12px,env(safe-area-inset-left));right:max(12px,env(safe-area-inset-right))}
+ .win-sidebar nav button{font-size:14px;min-height:54px}
+ .plain-about .pixel-name{font-size:clamp(36px,10vw,60px);letter-spacing:-1px}
+ .plain-about .education-intro{font-size:18px}
+ .plain-about>p:not(.education-intro):not(.internship-line){font-size:16px;line-height:1.8}
+ .plain-about .identity-links{gap:10px;margin-top:10px}
+ .plain-about .identity-links>button{min-height:50px;font-size:15px}
+ .resume-document{padding:16px;gap:12px}
+ .resume-document h2{font-size:17px}
+ .resume-document>.resume-pdf-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .resume-document .resume-pdf-actions>a{min-width:0;font-size:13px;padding:12px 8px}
+ .pdf-viewer{height:64dvh;min-height:360px;border:1px solid #49313c;border-radius:6px}
+ .experience-team-grid article{flex-direction:column;gap:12px}
+ .experience-team-grid p,.experience-team-description p{font-size:15px}
+ .contact-email{font-size:18px;overflow-wrap:anywhere}
+ .win-taskbar{padding-left:max(8px,env(safe-area-inset-left));padding-right:max(8px,env(safe-area-inset-right))}
+}
