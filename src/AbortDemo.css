@@ -79,3 +79,10 @@
 .ac-halted rect{fill:#111;stroke:#4a2a33;stroke-dasharray:3 2}.ac-halted text{fill:#6f6268;text-decoration:line-through}
 .ac-pill rect{fill:#911e2b;stroke:#ff5a6e}.ac-pill text{fill:#fff;font-size:10px;letter-spacing:.08em}
 .ac-arrow{fill:none;stroke:#ff5a6e;stroke-width:1.6}
+
+.abort-text-tree{margin:0 0 16px;padding:14px 16px;background:#0c0c0c;border:1px solid #50303e;border-radius:6px;font:12.5px/1.65 Consolas,'Cascadia Code',monospace;color:#e8dde2;overflow-x:auto;white-space:pre}
+.abort-text-steps{margin:0 0 12px}
+.abort-text-note{font-size:12px;line-height:1.8;color:#bca9b3;margin:0 0 28px}
+.abort-text-intro{font-size:14px;line-height:1.9;color:#cfc3c9;margin:0 0 16px}
+.abort-subhead{font-size:16px;font-weight:600;color:#ded3d8;margin:24px 0 10px}
+.abort-node-list{margin:0 0 8px}
