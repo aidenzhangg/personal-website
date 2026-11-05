@@ -4,7 +4,7 @@ type Position = { x: number; y: number; width: number }
 export function useWindowControls() {
   const frame = useRef<HTMLElement>(null)
   const [position, setPosition] = useState<Position | null>(null)
-  const [maximized, setMaximized] = useState(true)
+  const [maximized, setMaximized] = useState(false)
   const [visible, setVisible] = useState(true)
   const [minimized, setMinimized] = useState(false)
   const [minimizing, setMinimizing] = useState(false)

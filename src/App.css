@@ -221,3 +221,14 @@ button.sidebar-email{background:none;text-align:left;cursor:pointer;width:100%}b
  .plain-about .identity-links{max-width:none;grid-template-columns:1fr}
  .plain-about>p:not(.education-intro):not(.internship-line){margin:18px 0}
 }
+
+/* Anchor content near the sidebar rather than centering in unused screen space. */
+@media(min-width:768px){
+ .win-content,.win-maximized .win-content{padding:52px 48px 44px}
+ .win-content>div,.win-content>section,.win-content>article,
+ .win-content>.plain-about,
+ .win-content:has(>.resume-content)>.page-heading,
+ .win-content:has(>.resume-content)>.page-eyebrow{margin-left:0;margin-right:0}
+ .win-content>.plain-about{padding-top:8px}
+ .win-content:has(>.plain-about),.win-content:has(>.experience-groups),.win-content:has(>.compact-experience){padding-top:52px}
+}
