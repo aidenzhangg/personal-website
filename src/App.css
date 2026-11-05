@@ -209,15 +209,15 @@ button.sidebar-email{background:none;text-align:left;cursor:pointer;width:100%}b
 
 /* Keep every tab in a shared reading column on wide displays. */
 .win-content>div,.win-content>section,.win-content>article{width:100%;max-width:960px;margin-left:auto;margin-right:auto}
-.win-content>.plain-about{max-width:840px;min-height:0!important;padding:24px 0 0}
+.win-content>.plain-about{max-width:840px;min-height:0!important;padding:8px 0 0}
 .plain-about .pixel-name{font-size:clamp(48px,5vw,80px);max-width:100%}
 .plain-about>p:not(.education-intro):not(.internship-line){max-width:68ch;line-height:1.85;margin:24px 0}
-.plain-about .identity-links{grid-template-columns:1fr;max-width:440px;gap:12px;margin-top:8px;align-self:flex-start}
+.plain-about .identity-links{grid-template-columns:repeat(3,minmax(0,1fr));max-width:none;gap:12px;margin-top:8px;align-self:stretch}
 .plain-about .identity-links>button{min-height:52px;text-align:center}
-.plain-about .identity-bottom{margin-top:30px;padding-top:22px}
+.plain-about .identity-bottom{margin-top:20px;padding-top:18px}
 @media(max-width:767px){
  .win-content>.plain-about{padding:0}
  .plain-about .pixel-name{font-size:clamp(38px,10.8vw,64px)}
- .plain-about .identity-links{max-width:none}
+ .plain-about .identity-links{max-width:none;grid-template-columns:1fr}
  .plain-about>p:not(.education-intro):not(.internship-line){margin:18px 0}
 }
