@@ -222,13 +222,15 @@ button.sidebar-email{background:none;text-align:left;cursor:pointer;width:100%}b
  .plain-about>p:not(.education-intro):not(.internship-line){margin:18px 0}
 }
 
-/* Anchor content near the sidebar rather than centering in unused screen space. */
-@media(min-width:768px){
- .win-content,.win-maximized .win-content{padding:52px 48px 44px}
- .win-content>div,.win-content>section,.win-content>article,
- .win-content>.plain-about,
- .win-content:has(>.resume-content)>.page-heading,
- .win-content:has(>.resume-content)>.page-eyebrow{margin-left:0;margin-right:0}
- .win-content>.plain-about{padding-top:8px}
- .win-content:has(>.plain-about),.win-content:has(>.experience-groups),.win-content:has(>.compact-experience){padding-top:52px}
-}
+/* Center tab content, with full-width PDF documents. */
+.win-content>.resume-content,
+.win-content:has(>.resume-content)>.page-heading,
+.win-content:has(>.resume-content)>.page-eyebrow{max-width:none;width:100%}
+.experience-team-grid{grid-template-columns:minmax(0,1fr);gap:20px}
+.experience-team-grid article{padding:24px;gap:20px}
+.experience-team-grid h3{font-size:22px}
+.experience-team-grid article>div{min-width:0}
+.experience-team-grid p,.experience-team-description p{font-size:15px;line-height:1.85}
+.experience-team-grid article>div>span{font-size:14px}
+.team-current-work>a,.team-contribution-links>a{font-size:15px}
+@media(max-width:767px){.experience-team-grid article{padding:18px;gap:14px}}

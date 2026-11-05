@@ -55,5 +55,5 @@ export function useWindowControls() {
     setPosition(constrain(rect.left + (event.key === 'ArrowLeft' ? -20 : event.key === 'ArrowRight' ? 20 : 0), rect.top + (event.key === 'ArrowUp' ? -20 : event.key === 'ArrowDown' ? 20 : 0), rect.width))
   }
   const style: CSSProperties | undefined = position && !maximized ? { position: 'fixed', left: position.x, top: position.y, width: position.width, maxHeight: `calc(100dvh - ${position.y + 60}px)`, margin: 0, zIndex: 3 } : undefined
-  return { frame, maximized, toggleMaximized: () => setMaximized(value => !value), visible, minimized, minimizing, dragging, floating: !!position && !maximized, style, restore, minimize, close, pointerDown, pointerMove, pointerUp, keyDown }
+  return { frame, maximized, setMaximized, toggleMaximized: () => setMaximized(value => !value), visible, minimized, minimizing, dragging, floating: !!position && !maximized, style, restore, minimize, close, pointerDown, pointerMove, pointerUp, keyDown }
 }

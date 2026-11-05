@@ -12,7 +12,7 @@ function parseEntries(value: string): Entry[] {
 
 export function ExperienceList({ value, section = 'work' }: { value: string; section?: 'work' | 'teams' }) {
   const all = parseEntries(value)
-  const teams = all.filter(entry => /WARG|WATonomous/.test(entry.title))
+  const teams = all.filter(entry => /WARG|WATonomous/.test(entry.title)).sort((a, b) => Number(b.title.includes('WARG')) - Number(a.title.includes('WARG')))
   const work = all.filter(entry => !/WARG|WATonomous/.test(entry.title))
   return <div className="compact-experience">
     {section === 'work' && <section aria-label="Work and programs"><h2 className="experience-group-title">Work &amp; Programs</h2><div className="experience-accordion">{work.map(entry => {

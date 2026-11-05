@@ -143,6 +143,8 @@ function App() {
   const [energy, setEnergy] = useState(false)
   const [accessible, setAccessible] = useState(false)
   const { frame: windowFrameRef, ...windowControls } = useWindowControls()
+  const { setMaximized } = windowControls
+  useEffect(() => { setMaximized(tab !== 'About') }, [tab, setMaximized])
   const windowOpen = windowControls.visible
   const maximized = windowControls.maximized
   useEffect(() => { const close = (event: KeyboardEvent) => { if (event.key === 'Escape') { setSettingsOpen(false); setStartOpen(false); setNavOpen(false) } }; window.addEventListener('keydown', close); return () => window.removeEventListener('keydown', close) }, [])
