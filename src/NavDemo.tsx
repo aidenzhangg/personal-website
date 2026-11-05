@@ -27,6 +27,27 @@ function solid(x: number, y: number) {
   return false
 }
 
+// The drawn robot is 2 m long and 1 m wide. Its enclosing circle
+// keeps the entire body clear, including while turning in place.
+const BODY_RADIUS = Math.hypot(1, 0.5)
+function bodyBlocked(x: number, y: number, radius = BODY_RADIUS) {
+  if (Math.abs(x) + radius >= ARENA - 0.25 || Math.abs(y) + radius >= ARENA - 0.25) return true
+  return SHAPES.some(s => {
+    if (s.kind === 'cyl') return Math.hypot(x - s.x, y - s.y) <= s.r + radius
+    const dx = Math.max(0, Math.abs(x - s.x) - s.w / 2)
+    const dy = Math.max(0, Math.abs(y - s.y) - s.h / 2)
+    return Math.hypot(dx, dy) <= BODY_RADIUS
+  })
+}
+function motionBlocked(x: number, y: number, nx: number, ny: number) {
+  const steps = Math.max(1, Math.ceil(Math.hypot(nx - x, ny - y) / 0.025))
+  for (let i = 0; i <= steps; i++) {
+    const t = i / steps
+    if (bodyBlocked(x + (nx - x) * t, y + (ny - y) * t)) return true
+  }
+  return false
+}
+
 type Pt = [number, number]
 type Sim = {
   x: number; y: number; yaw: number; v: number; w: number
@@ -38,6 +59,13 @@ type Sim = {
 }
 
 const toCell = (v: number) => Math.floor((v + ARENA) / RES)
+
+// Include a half-cell diagonal so every point in a traversable cell
+// clears the body; this also makes adjacent-cell transitions safe.
+const bodyGrid = new Uint8Array(N * N)
+for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
+  bodyGrid[y * N + x] = Number(bodyBlocked(x * RES - ARENA + RES / 2, y * RES - ARENA + RES / 2, BODY_RADIUS + RES / Math.SQRT2))
+}
 
 // LiDAR: 256 beams over 360°, 20 m range
 function scan(sim: Sim) {
@@ -110,7 +138,7 @@ function plan(sim: Sim) {
   if (!sim.goal) return
   const sx = toCell(sim.x), sy = toCell(sim.y), gx = toCell(sim.goal[0]), gy = toCell(sim.goal[1])
   const inside = (x: number, y: number) => x >= 0 && x < N && y >= 0 && y < N
-  if (!inside(sx, sy) || !inside(gx, gy)) { sim.noPath = true; sim.path = []; return }
+  if (!inside(sx, sy) || !inside(gx, gy) || bodyBlocked(sim.goal[0], sim.goal[1])) { sim.noPath = true; sim.path = []; return }
   const start = sy * N + sx, goal = gy * N + gx
   const h = (x: number, y: number) => Math.hypot(x - gx, y - gy)
   const g = new Float64Array(N * N).fill(Infinity)
@@ -129,6 +157,12 @@ function plan(sim: Sim) {
     for (let k = 0; k < 8; k++) {
       const nx = cx + DX[k], ny = cy + DY[k]
       if (!inside(nx, ny)) continue
+      const wx = nx * RES - ARENA + RES / 2, wy = ny * RES - ARENA + RES / 2
+      const fromX = cur === start ? sim.x : cx * RES - ARENA + RES / 2
+      const fromY = cur === start ? sim.y : cy * RES - ARENA + RES / 2
+      if (bodyGrid[ny * N + nx] || (cur === start && motionBlocked(fromX, fromY, wx, wy))) continue
+      // Do not cut diagonally between two lethal map cells.
+      if (DX[k] && DY[k] && (sim.map[cy * N + nx] >= 100 || sim.map[ny * N + cx] >= 100)) continue
       const ni = ny * N + nx
       const cost = Math.max(0, sim.map[ni])
       if (cost >= 100) { if (currentCost < 100) continue }
@@ -160,7 +194,13 @@ function control(sim: Sim) {
   const lx = dx * Math.cos(-sim.yaw) - dy * Math.sin(-sim.yaw)
   const ly = dx * Math.sin(-sim.yaw) + dy * Math.cos(-sim.yaw)
   const l2 = lx * lx + ly * ly
-  if (l2 > 0.001) { sim.v = SPEED; sim.w = Math.max(-1, Math.min(1, SPEED * (2 * ly / l2))) }
+  const headingError = Math.atan2(ly, lx)
+  if (Math.abs(headingError) > 0.4) {
+    sim.w = Math.max(-1, Math.min(1, headingError * 2))
+  } else if (l2 > 0.001) {
+    sim.v = SPEED
+    sim.w = Math.max(-1, Math.min(1, SPEED * (2 * ly / l2)))
+  }
   sim.lookahead = target
 }
 
@@ -195,8 +235,19 @@ function step(sim: Sim) {
   }
 
   control(sim)
-  sim.x += sim.v * Math.cos(sim.yaw) * DT
-  sim.y += sim.v * Math.sin(sim.yaw) * DT
+  const nx = sim.x + sim.v * Math.cos(sim.yaw) * DT
+  const ny = sim.y + sim.v * Math.sin(sim.yaw) * DT
+  if (sim.v > 0 && motionBlocked(sim.x, sim.y, nx, ny)) {
+    // Pure Pursuit can round a safe A* corner into an obstacle. Stop
+    // before committing the pose, refresh the map, and replan.
+    sim.v = 0
+    sim.w = 0
+    integrate(sim, scan(sim))
+    plan(sim)
+  } else {
+    sim.x = nx
+    sim.y = ny
+  }
   sim.yaw += sim.w * DT
   if (sim.steps % 3 === 0 && sim.v > 0) { sim.trail.push([sim.x, sim.y]); if (sim.trail.length > 900) sim.trail.shift() }
 }
