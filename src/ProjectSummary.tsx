@@ -1,12 +1,12 @@
 import './ProjectSummary.css'
 
 const summaries: Record<string, string> = {
-  'Computer Vision Food Recognition & Nutritional Analysis': 'Built a webcam nutrition app using a fine-tuned YOLO detector and spoken feedback. It recognizes five food categories, achieved 98% mAP50 on held-out validation, and averaged 13.5 FPS.',
-  'ROS 2 Behaviour Tree Telemetry Reporter - WARG': 'Built a drone telemetry reporter that sends compact behaviour-tree state IDs through MAVROS and MAVLink. Simulation tests confirmed four mission states arriving in Mission Planner, with updates on changes and periodic retransmission.',
-  'Emergency Abort System - WARG': 'Built an emergency-abort behaviour that checks ground-station commands each cycle and requests LAND through MAVROS. Bench testing confirmed ABORT reception and transition to AbortLand; a completed landing was not demonstrated.',
-  'Recall - AI Study Assistant Chrome Extension': 'Built a Chrome study assistant with React, Spring Boot, and PostgreSQL. It turns pasted or uploaded notes into fill-in-the-blank quizzes with hints, retries, and stored questions and attempts.',
-  'Autonomous Robot Navigation & LiDAR Mapping - WATonomous': 'Worked in a team of three to build a ROS 2 navigation stack using LiDAR mapping, A* planning, and Pure Pursuit control. The integrated robot navigated around static obstacles in simulation, with its map and motion inspected in Foxglove.',
-  'Bedside Patient Monitoring System': 'Built an Arduino bedside-monitor prototype using optical heart-rate sensing, movement sensing, and signal filtering. It displays live BPM on an OLED and clears invalid readings when a finger is removed or a sensor fails.',
+  'Computer Vision Food Recognition & Nutritional Analysis': 'Point a webcam at food to see nutrition facts and hear them read aloud, using a fine-tuned YOLO model. Across five food categories, the detector reached 98% mAP50 on held-out validation and averaged 13.5 FPS.',
+  'ROS 2 Behaviour Tree Telemetry Reporter - WARG': 'Pilots can see which autonomy step a drone is running through compact state IDs sent over MAVROS and MAVLink. Simulation testing confirmed four mission states in Mission Planner, with updates on state changes and periodic retransmission.',
+  'Emergency Abort System - WARG': 'A ground-station ABORT command interrupts the drone mission and requests LAND through a behaviour-tree check and MAVROS. Bench tests confirmed command reception and transition to AbortLand, but did not demonstrate a completed landing.',
+  'Recall - AI Study Assistant Chrome Extension': 'Turn pasted or uploaded notes into fill-in-the-blank quizzes directly in a Chrome side panel. A React interface, Spring Boot API, and PostgreSQL database support hints, retries, and saved questions and attempts.',
+  'Autonomous Robot Navigation & LiDAR Mapping - WATonomous': 'A simulated robot finds its way around static obstacles using LiDAR maps, A* routes, and Pure Pursuit steering. Our three-person team integrated the ROS 2 pipeline and inspected its navigation in Foxglove.',
+  'Bedside Patient Monitoring System': 'Live heart-rate readings appear on an OLED while an Arduino samples optical pulse and movement sensors with signal filtering. The prototype clears invalid BPM readings when a finger is removed or a sensor fails.',
 }
 
 export function ProjectSummary({ title }: { title: string }) {
