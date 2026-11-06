@@ -1,0 +1,25 @@
+.project-screen > .project-tldr {
+  margin: 14px 0 28px;
+  padding: 0;
+  max-width: 76ch;
+  background: none;
+  border: 0;
+  box-shadow: none;
+}
+.project-tldr h2 {
+  margin: 0 0 10px;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 1.5px;
+  color: #d694b0;
+}
+.project-tldr p {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.85;
+  color: #e7dce3;
+}
+@media (max-width: 767px) {
+  .project-screen > .project-tldr { margin: 12px 0 24px; }
+  .project-tldr p { font-size: 16px; line-height: 1.8; }
+}
