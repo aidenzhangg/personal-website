@@ -271,3 +271,9 @@ button.sidebar-email{background:none;text-align:left;cursor:pointer;width:100%}b
  .contact-email{font-size:18px;overflow-wrap:anywhere}
  .win-taskbar{padding-left:max(8px,env(safe-area-inset-left));padding-right:max(8px,env(safe-area-inset-right))}
 }
+
+.contact-compose-note{font-size:14px;line-height:1.75;color:#bfb0ba;margin:12px 0 22px}
+.contact-compose-note>a{text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
+.contact-message-form .message-submit{flex-wrap:wrap;gap:12px}
+.contact-message-form .message-submit>button{min-height:48px;padding:12px 18px;font-size:14px}
+@media(max-width:767px){.contact-message-form .message-submit>button{width:100%}}
