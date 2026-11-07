@@ -1,7 +1,7 @@
 {
   "name": "Aiden Zhang",
   "email": "a522zhan@uwaterloo.ca",
-  "location": "Richmond Hill, Ontario",
+  "location": "",
   "intro": "Hey, I'm Aiden, a first-year Computer Engineering student at the University of Waterloo. I'm interested in building software, firmware, and hardware, from full-stack applications to computer vision, robotics, and embedded systems. I'm currently on the WARG Autonomy subteam and the WATonomous EVE subteam. Outside of school, I play basketball and enjoy playing piano. I'm looking for a Summer 2027 co-op where I can contribute, learn from others, and keep building.",
   "about": "",
   "skills": "Languages\nPython, Java, C++, C, Go, JavaScript, TypeScript, SQL, PL/SQL, HTML, CSS\n\nWeb development\nReact, Spring Boot, Spring MVC, Hibernate/JPA, REST APIs, JSON\n\nMachine learning & computer vision\nPyTorch, TensorFlow, OpenCV, YOLO, NumPy, pandas, RAG, scikit-learn\n\nDeveloper tools\nGit, GitHub, Bitbucket, Docker, Maven, Gradle, Postman, JUnit, CI/CD, VS Code, Vite, PyTest\n\nCloud & data platforms\nAWS, Azure, GCP, Databricks, Spark\n\nDatabases\nPostgreSQL, Oracle, SQL Server, MongoDB\n\nRobotics\nROS 2, ArduPilot, MAVROS, MAVLink\n\nHardware\nArduino UNO, Embedded Programming, I2C, UART, Serial Communication, ADC, Signal Processing, Arduino IDE",
