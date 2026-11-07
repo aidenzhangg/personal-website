@@ -16,7 +16,7 @@ import { ContactForm } from './ContactForm'
 import { QuickSettings } from './QuickSettings'
 import { matchSections } from './sectionSearch'
 
-const tabs = ['About', 'Experience', 'Design Teams', 'Projects', 'Technical Skills', 'Certifications', 'Resume', 'Portfolio', 'Education', 'Contact'] as const
+const tabs = ['About', 'Experience', 'Projects', 'Design Teams', 'Technical Skills', 'Certifications', 'Resume', 'Portfolio', 'Education', 'Contact'] as const
 type Tab = typeof tabs[number]
 type Certification = { title: string; issuer: string; date: string; description: string; url: string }
 type Profile = { name: string; email: string; location: string; intro: string; about: string; skills: string; projects: string; experience: string; github: string; linkedin: string; photo: string; resume: string; portfolioPdf?: string; certifications: Certification[]; projectRepositories: Record<string, string> }
