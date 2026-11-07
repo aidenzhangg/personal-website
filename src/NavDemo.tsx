@@ -55,7 +55,7 @@ type Sim = {
   lastX: number; lastY: number; updateFlag: boolean
   goal: Pt | null; goalIndex: number; manual: boolean; waitSteps: number
   path: Pt[]; expanded: number; noPath: boolean; lookahead: Pt | null
-  steps: number; mapUpdates: number; trail: Pt[]
+  steps: number; mapUpdates: number; trail: Pt[]; recoverySteps: number
 }
 
 const toCell = (v: number) => Math.floor((v + ARENA) / RES)
@@ -185,7 +185,15 @@ function control(sim: Sim) {
   sim.lookahead = null
   sim.v = 0; sim.w = 0
   if (!sim.path.length) return
-  let target = sim.path.find(p => Math.hypot(p[0] - sim.x, p[1] - sim.y) >= LOOKAHEAD)
+  // Discard the path behind the robot between planner updates.
+  let nearest = 0
+  for (let i = 1; i < sim.path.length; i++) {
+    if (Math.hypot(sim.path[i][0] - sim.x, sim.path[i][1] - sim.y) < Math.hypot(sim.path[nearest][0] - sim.x, sim.path[nearest][1] - sim.y)) nearest = i
+  }
+  sim.path = sim.path.slice(nearest)
+  const recovering = sim.recoverySteps > 0
+  if (recovering) sim.recoverySteps--
+  let target = sim.path.find(p => Math.hypot(p[0] - sim.x, p[1] - sim.y) >= (recovering ? 0.08 : LOOKAHEAD))
   if (!target) {
     target = sim.path[sim.path.length - 1]
     if (Math.hypot(target[0] - sim.x, target[1] - sim.y) < 0.2) { sim.path = []; return }
@@ -195,11 +203,11 @@ function control(sim: Sim) {
   const ly = dx * Math.sin(-sim.yaw) + dy * Math.cos(-sim.yaw)
   const l2 = lx * lx + ly * ly
   const headingError = Math.atan2(ly, lx)
-  if (Math.abs(headingError) > 0.4) {
+  if (Math.abs(headingError) > (recovering ? 0.025 : 0.4)) {
     sim.w = Math.max(-1, Math.min(1, headingError * 2))
   } else if (l2 > 0.001) {
-    sim.v = SPEED
-    sim.w = Math.max(-1, Math.min(1, SPEED * (2 * ly / l2)))
+    sim.v = recovering ? Math.min(SPEED, Math.sqrt(l2) / DT) : SPEED
+    sim.w = recovering ? 0 : Math.max(-1, Math.min(1, SPEED * (2 * ly / l2)))
   }
   sim.lookahead = target
 }
@@ -211,7 +219,7 @@ function createSim(): Sim {
     lastX: -6, lastY: 0, updateFlag: false,
     goal: GOALS[0], goalIndex: 0, manual: false, waitSteps: 0,
     path: [], expanded: 0, noPath: false, lookahead: null,
-    steps: 0, mapUpdates: 0, trail: [[-6, 0]],
+    steps: 0, mapUpdates: 0, trail: [[-6, 0]], recoverySteps: 0,
   }
   integrate(sim, scan(sim))
   plan(sim)
@@ -239,9 +247,11 @@ function step(sim: Sim) {
   const ny = sim.y + sim.v * Math.sin(sim.yaw) * DT
   if (sim.v > 0 && motionBlocked(sim.x, sim.y, nx, ny)) {
     // Pure Pursuit can round a safe A* corner into an obstacle. Stop
-    // before committing the pose, refresh the map, and replan.
+    // before committing the pose, then follow nearby A* waypoints with
+    // turn-in-place steering instead of repeating the blocked shortcut.
     sim.v = 0
     sim.w = 0
+    sim.recoverySteps = 120
     integrate(sim, scan(sim))
     plan(sim)
   } else {
