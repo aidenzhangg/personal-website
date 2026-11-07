@@ -285,3 +285,9 @@ button.sidebar-email{background:none;text-align:left;cursor:pointer;width:100%}b
 .contact-feedback-error{background:#321c24;border-color:#8a4b61;border-left-color:#f498b7;color:#ffc6d9}
 .contact-feedback-error p{color:#f1d6e0}
 @media(max-width:767px){.contact-feedback{padding:17px 14px;gap:11px}.contact-feedback strong{font-size:18px}.contact-feedback p{font-size:15px}}
+
+.education-coursework{margin-top:22px}
+.education-coursework h3{font-size:12px;font-weight:600;letter-spacing:1px;color:#d5a2b7;margin:0 0 12px}
+.education-coursework ul{display:flex;flex-wrap:wrap;gap:8px 22px;padding-left:17px;margin:0;color:#d7cbd2;font-size:14px;line-height:1.8}
+.education-coursework li::marker{color:#b96a8a}
+@media(max-width:767px){.education-coursework ul{display:block;font-size:15px}.education-coursework li{margin-bottom:5px}}
