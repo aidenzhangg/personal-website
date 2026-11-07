@@ -4,5 +4,11 @@
 .toolbar-quick-links>a{border:1px solid #765062;background:#2b1e25}
 .project-card-copy .project-card-outcome{font-size:13px;line-height:1.65;color:#e5bacb;margin:12px 0 0}
 .plain-about .identity-meta+.identity-links{margin-top:22px;margin-bottom:8px}
-@media(max-width:1100px){.toolbar-quick-links>button{display:none}}
+@media(max-width:1100px){.toolbar-quick-links>button:not(.toolbar-projects){display:none}}
 @media(max-width:767px){.toolbar-quick-links{display:none}.phone-section-nav>button{padding-inline:10px}.plain-about .identity-meta+.identity-links{margin-top:18px}.project-card-copy .project-card-outcome{font-size:14px}}
+
+.toolbar-quick-links>.toolbar-projects{background:#81243a;border:1px solid #b85c7c;color:#fff;font-weight:600;font-size:14px;padding:10px 16px;min-height:42px}
+.toolbar-quick-links>.toolbar-projects:hover{background:#a23551}
+.win-sidebar nav button[aria-current],.phone-section-nav>button[aria-current]{font-weight:600}
+@media(min-width:768px){.win-toolbar .win-breadcrumb{flex:1;min-width:0}.win-breadcrumb .breadcrumb-project{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
+@media(max-width:767px){.phone-section-nav>button:nth-child(2){background:#81243a;border:1px solid #ad5674;color:#fff;font-weight:600;padding-inline:15px}}
