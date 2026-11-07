@@ -31,9 +31,10 @@ function readRoute() {
  return { tab, slug: tab === 'Projects' && projects.some(project => project.slug === slug) ? slug : null }
 }
 const skillIcons: Record<string, string> = {
- Java: 'java', Python: 'python', 'C++': 'cplusplus', SQL: 'sql', HTML: 'html5', CSS: 'css3', TypeScript: 'typescript', JavaScript: 'javascript',
+ C: 'c', Go: 'go', 'PL/SQL': 'oracle', 'Spring MVC': 'spring', 'Hibernate/JPA': 'hibernate', JSON: 'json', YOLO: 'yolo', Bitbucket: 'bitbucket', Maven: 'maven', Gradle: 'gradle', Postman: 'postman', JUnit: 'junit', AWS: 'amazonwebservices', Azure: 'azure', GCP: 'googlecloud', Databricks: 'databricks', Spark: 'apachespark', Oracle: 'oracle', 'SQL Server': 'microsoftsqlserver', MongoDB: 'mongodb',
+ Java: 'java', Python: 'python', 'C++': 'cplusplus', SQL: 'azuresqldatabase', HTML: 'html5', CSS: 'css3', TypeScript: 'typescript', JavaScript: 'javascript',
  React: 'react', 'Spring Boot': 'spring', PyTorch: 'pytorch', TensorFlow: 'tensorflow', 'scikit-learn': 'scikitlearn', OpenCV: 'opencv', 'ROS 2': 'ros', pandas: 'pandas', NumPy: 'numpy',
- 'Arduino UNO': 'arduino', 'Arduino IDE': 'arduino', 'Java 21': 'java', Git: 'git', GitHub: 'github', Docker: 'docker', PyCharm: 'pycharm', Eclipse: 'eclipse', Vite: 'vitejs', 'Chrome DevTools': 'chrome', 'VS Code': 'vscode', PostgreSQL: 'sql', PyTest: 'pytest', YAML: 'yaml',
+ 'Arduino UNO': 'arduino', 'Arduino IDE': 'arduino', 'Java 21': 'java', Git: 'git', GitHub: 'github', Docker: 'docker', PyCharm: 'pycharm', Eclipse: 'eclipse', Vite: 'vitejs', 'Chrome DevTools': 'chrome', 'VS Code': 'vscode', PostgreSQL: 'postgresql', PyTest: 'pytest', YAML: 'yaml',
 }
 function SkillIcon({ name }: { name: string }) {
   const [failed, setFailed] = useState(false)
@@ -41,6 +42,9 @@ function SkillIcon({ name }: { name: string }) {
   const key = Object.keys(skillIcons).find(skill => skill.toLowerCase() === normalized)
   const icon = key ? skillIcons[key] : undefined
   const paths: Record<string, string> = {
+    'REST APIs': 'M8 4 2 12l6 8m8-16 6 8-6 8M14 3l-4 18',
+    'CI/CD': 'M8 7a5 5 0 1 0 0 10c4 0 4-10 8-10a5 5 0 1 1 0 10c-4 0-4-10-8-10Z',
+    RAG: 'M3 4h7v14H3V4Zm11 0h7v14h-7V4ZM6 8h1m-1 4h1m10-4h1m-1 4h1M10 11h4m-2-2 2 2-2 2',
     Marketing: 'M3 20h18M6 16v-4m6 4V9m6 7V5M4 8l6-4 5 2 5-4',
     'Public speaking': 'm3 9 13-5v16L3 15V9Zm0 0v6h5l2 6h3l-2-7m8-6 3-2m-3 10 3 2',
     Innovation: 'M9 18h6m-6 3h6M8 14a6 6 0 1 1 8 0l-1 3H9l-1-3Z',
@@ -71,8 +75,8 @@ function SkillIcon({ name }: { name: string }) {
     'Embedded Programming': 'M6 6h12v12H6V6Zm3-4v4m6-4v4M9 18v4m6-4v4M2 9h4m-4 6h4m12-6h4m-4 6h4M9 9h6v6H9V9Z',
   }
   const pathKey = Object.keys(paths).find(skill => skill.toLowerCase() === normalized)
-  if (name === 'SQL' || pathKey || !icon || failed) return <svg className="skill-symbol" width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={(pathKey ? paths[pathKey] : undefined) || 'm8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18'}/></svg>
-  return <img className={['github','ros'].includes(icon) ? 'tech-icon tech-icon-light' : 'tech-icon'} src={`/icons/tech/${icon}.svg`} alt="" width="28" height="28" onError={() => setFailed(true)}/>
+  if (!icon || failed) return <svg className="skill-symbol" width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={(pathKey ? paths[pathKey] : undefined) || 'm8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18'}/></svg>
+  return <img className={['github','ros','gradle','json'].includes(icon) ? 'tech-icon tech-icon-light' : 'tech-icon'} src={`/icons/tech/${icon}.svg`} alt="" width="28" height="28" onError={() => setFailed(true)}/>
 }
 function TeamBadge({ name }: { name: string }) {
  const team = name.includes('WATonomous') ? 'WATonomous' : name.includes('WARG') ? 'WARG' : null

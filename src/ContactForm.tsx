@@ -66,7 +66,6 @@ export function ContactForm({ email }: { email: string }) {
    <button className="primary" type="submit" disabled={sending}>{sending ? 'Sending...' : endpoint ? 'Send message' : 'Open email draft'}</button>
    <button className="secondary" type="button" onClick={copyDraft}>Copy email draft</button>
   </div>
-  <p className="contact-compose-note">Prefer your own email service? Send to <a href={`mailto:${email}`}>{email}</a>.</p>
   {error && <p className="message-status message-error" role="alert">{error}</p>}
   {status && <p className="message-status" role="status">{status}</p>}
  </form>
