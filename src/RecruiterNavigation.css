@@ -1,0 +1,8 @@
+.toolbar-quick-links{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.toolbar-quick-links>button,.toolbar-quick-links>a{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:36px;padding:8px 12px;background:none;color:#debbc9;font-size:12px;white-space:nowrap;border-radius:4px}
+.toolbar-quick-links>button:hover,.toolbar-quick-links>a:hover{background:#36232c;color:#fff}
+.toolbar-quick-links>a{border:1px solid #765062;background:#2b1e25}
+.project-card-copy .project-card-outcome{font-size:13px;line-height:1.65;color:#e5bacb;margin:12px 0 0}
+.plain-about .identity-meta+.identity-links{margin-top:22px;margin-bottom:8px}
+@media(max-width:1100px){.toolbar-quick-links>button{display:none}}
+@media(max-width:767px){.toolbar-quick-links{display:none}.phone-section-nav>button{padding-inline:10px}.plain-about .identity-meta+.identity-links{margin-top:18px}.project-card-copy .project-card-outcome{font-size:14px}}

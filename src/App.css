@@ -277,3 +277,11 @@ button.sidebar-email{background:none;text-align:left;cursor:pointer;width:100%}b
 .contact-message-form .message-submit{flex-wrap:wrap;gap:12px}
 .contact-message-form .message-submit>button{min-height:48px;padding:12px 18px;font-size:14px}
 @media(max-width:767px){.contact-message-form .message-submit>button{width:100%}}
+
+.contact-feedback{display:flex;align-items:flex-start;gap:14px;padding:20px;margin:20px 0 26px;border:1px solid #568774;border-left:4px solid #8ed8b4;border-radius:6px;background:#192b24;color:#b8f0d2;scroll-margin-block:150px;outline-offset:4px}
+.contact-feedback>svg{flex-shrink:0;margin-top:2px}
+.contact-feedback strong{display:block;font-size:20px;line-height:1.4;font-weight:600}
+.contact-feedback p{margin:7px 0 0;font-size:15px;line-height:1.7;color:#d8eee2}
+.contact-feedback-error{background:#321c24;border-color:#8a4b61;border-left-color:#f498b7;color:#ffc6d9}
+.contact-feedback-error p{color:#f1d6e0}
+@media(max-width:767px){.contact-feedback{padding:17px 14px;gap:11px}.contact-feedback strong{font-size:18px}.contact-feedback p{font-size:15px}}

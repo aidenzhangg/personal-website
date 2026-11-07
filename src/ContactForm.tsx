@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react'
+import { useEffect, useRef, useState, type FormEvent } from 'react'
 
 export function ContactForm({ email }: { email: string }) {
  const endpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT?.trim() || 'https://formspree.io/f/moeezeqz'
@@ -8,6 +8,15 @@ export function ContactForm({ email }: { email: string }) {
  const [message, setMessage] = useState('')
  const [status, setStatus] = useState('')
  const [error, setError] = useState('')
+ const feedbackRef = useRef<HTMLDivElement>(null)
+ useEffect(() => {
+  if (!status && !error) return
+  feedbackRef.current?.focus({ preventScroll: true })
+  feedbackRef.current?.scrollIntoView({
+   behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+   block: 'center',
+  })
+ }, [status, error])
  const subject = name.trim() ? `Portfolio message from ${name.trim()}` : 'Portfolio message'
  const body = `${message.trim()}\n\nFrom: ${name.trim()}\nReply to: ${reply.trim()}`
  async function submit(event: FormEvent<HTMLFormElement>) {
@@ -32,7 +41,7 @@ export function ContactForm({ email }: { email: string }) {
    try {
     const response = await fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' }, signal: controller.signal })
     if (!response.ok) throw new Error('Submission failed')
-    setStatus('Thank you! Your message was submitted.')
+    setStatus('Thanks for reaching out. Your message was submitted successfully.')
     setName(''); setReply(''); setMessage('')
    } catch {
     setError('We could not confirm your message was sent. Your draft is still here; try again or copy it and email me directly.')
@@ -55,6 +64,10 @@ export function ContactForm({ email }: { email: string }) {
  }
  return <form className="contact-message-form" onSubmit={submit} aria-busy={sending}>
   <h2>{endpoint ? 'Leave me a message' : 'Write me an email'}</h2>
+  {(error || status) && <div ref={feedbackRef} tabIndex={-1} className={`contact-feedback${error ? ' contact-feedback-error' : ''}`} role={error ? 'alert' : 'status'} aria-atomic="true">
+   <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/>{error ? <path d="M12 7v6m0 3v1"/> : <path d="m7 12 3 3 7-7"/>}</svg>
+   <div><strong>{error ? 'Please check your message' : status.startsWith('Thanks') ? 'Message submitted' : 'Your email draft'}</strong><p>{error || status}</p></div>
+  </div>}
   {!endpoint && <p className="contact-compose-note">This opens a draft in your email app. You review and send it there.</p>}
   <div className="message-fields">
    <label>Your name<input name="name" autoComplete="name" required readOnly={sending} maxLength={100} value={name} onChange={event => setName(event.target.value)}/></label>
@@ -66,7 +79,5 @@ export function ContactForm({ email }: { email: string }) {
    <button className="primary" type="submit" disabled={sending}>{sending ? 'Sending...' : endpoint ? 'Send message' : 'Open email draft'}</button>
    <button className="secondary" type="button" onClick={copyDraft}>Copy email draft</button>
   </div>
-  {error && <p className="message-status message-error" role="alert">{error}</p>}
-  {status && <p className="message-status" role="status">{status}</p>}
  </form>
 }
