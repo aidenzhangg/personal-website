@@ -291,3 +291,10 @@ button.sidebar-email{background:none;text-align:left;cursor:pointer;width:100%}b
 .education-coursework p{margin:0;color:#d7cbd2;font-size:14px;line-height:1.8}
 @media(max-width:767px){.education-coursework p{font-size:15px}}
 
+
+.project-header-actions{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:22px}
+.project-header-actions>.project-back-link{margin-bottom:0}
+.project-header-actions>.project-github-link{width:auto;margin-left:auto;min-height:44px;padding:10px 15px;font-size:13px;gap:9px;background:#291d24;border:1px solid #805065;color:#efd5e1;border-radius:6px;transition:background .15s,border-color .15s}
+.project-header-actions>.project-github-link:hover{background:#432333;border-color:#d28aa8}
+.project-header-actions>.project-github-link>svg{flex-shrink:0;color:#d398b2}
+@media(max-width:480px){.project-header-actions{align-items:flex-start;gap:10px;flex-wrap:wrap}.project-header-actions>.project-github-link{font-size:12px;padding:10px 12px}}
