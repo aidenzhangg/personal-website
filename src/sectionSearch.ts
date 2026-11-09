@@ -3,7 +3,7 @@
  About: 'about home intro introduction aiden',
  Projects: 'projects project work built robotics drone recall computer vision',
  'Technical Skills': 'technical skills skill tech technology technologies programming languages hardware software',
- Experience: 'experience employment job jobs work camp counsellor counselor create program artificial intelligence university toronto',
+ Experience: 'experience employment job jobs work camp counsellor counselor',
  Certifications: 'certifications certification certificates certificate csmc first aid cpr high five rcm',
  Resume: 'resume cv curriculum vitae pdf',
  Portfolio: 'portfolio work pdf',
