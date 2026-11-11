@@ -158,23 +158,3 @@ export function DeconflictionDemo() {
     </div>
   </div>
 }
-
-export function DeconflictionCover() {
-  return <svg className="dc-cover" viewBox="0 0 320 200" role="img" aria-label="Two drone flight paths crossing inside each other's separation band, with the conflict marked">
-    <defs><pattern id="dcc-grid" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M16 0H0V16" fill="none" stroke="#1a1418" strokeWidth="1"/></pattern></defs>
-    <rect width="320" height="200" fill="#0c0b0c"/><rect width="320" height="200" fill="url(#dcc-grid)"/>
-    <path d="M30 170 L130 40 L210 60" stroke="#ff5a6e" strokeOpacity=".14" strokeWidth="18" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-    <path d="M30 40 L120 150 L200 160" stroke="#7fb0d9" strokeOpacity=".14" strokeWidth="18" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-    <path d="M250 30 L290 90" stroke="#5fbf8f" strokeOpacity=".14" strokeWidth="18" strokeLinecap="round" fill="none"/>
-    <path d="M30 170 L130 40 L210 60" stroke="#ff5a6e" strokeWidth="2" fill="none"/>
-    <path d="M30 40 L120 150 L200 160" stroke="#7fb0d9" strokeWidth="2" fill="none"/>
-    <path d="M250 30 L290 90" stroke="#5fbf8f" strokeWidth="2" fill="none"/>
-    <circle cx="30" cy="170" r="4" fill="#ff5a6e"/><circle cx="30" cy="40" r="4" fill="#7fb0d9"/><circle cx="250" cy="30" r="4" fill="#5fbf8f"/>
-    <circle cx="79" cy="106" r="9" fill="none" stroke="#fff" strokeWidth="1.6"/><circle cx="79" cy="106" r="2" fill="#fff"/>
-    <g className="dc-cover-pill"><rect x="96" y="96" width="74" height="20" rx="10"/><text x="133" y="110">CONFLICT</text></g>
-    <rect x="226" y="122" width="82" height="58" rx="5" fill="#141114" stroke="#3a2a31"/>
-    <text className="dc-cover-cap" x="267" y="140">sweep and prune</text>
-    <text className="dc-cover-big" x="267" y="160">O(S log S + C)</text>
-    <text className="dc-cover-cap" x="267" y="173">vs O(S²) brute force</text>
-  </svg>
-}

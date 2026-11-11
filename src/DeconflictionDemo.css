@@ -32,12 +32,6 @@
 .dc-list .dc-clear{display:block;color:#7fd4a6;font-family:inherit}
 .dc-legend{font-size:11.5px;line-height:1.7;color:#8f7f87}
 
-.dc-cover{display:block;width:100%;height:100%}
-.dc-cover text{font:600 9px 'Segoe UI',system-ui,sans-serif;text-anchor:middle}
-.dc-cover-pill rect{fill:#911e2b;stroke:#ff5a6e}.dc-cover-pill text{fill:#fff;font-size:9.5px;letter-spacing:.08em}
-.dc-cover .dc-cover-cap{font-size:7.5px;font-weight:400;fill:#8f7f87}
-.dc-cover .dc-cover-big{font:600 10px Consolas,'Cascadia Code',monospace;fill:#f0c5d3}
-
 .dc-complexity{width:100%;border-collapse:collapse;margin:0 0 16px;font-size:13px}
 .dc-complexity th,.dc-complexity td{text-align:left;padding:9px 12px;border-bottom:1px solid #3a2a31;vertical-align:top;line-height:1.6}
 .dc-complexity th{color:#efd8e2;font-weight:600;background:#1d171b}

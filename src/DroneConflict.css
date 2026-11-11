@@ -1,0 +1,20 @@
+.dcs{display:block;width:100%;height:100%;background:#09080a}
+.dcs text{font-family:Consolas,'Cascadia Code',monospace}
+.dcs-hud{font-size:7.5px;font-weight:600;fill:#e8dde2;letter-spacing:.08em}
+.dcs-dim{font-weight:400;fill:#8f7f87;letter-spacing:.04em;font-size:6.5px}
+.dcs-big{font-size:12px;font-weight:700}
+.dcs-id{font-size:7.5px;font-weight:700;text-anchor:middle}
+.dcs-pill text{font-size:7.5px;font-weight:700;text-anchor:middle;letter-spacing:.1em}
+.dcs-blade{stroke:#f2eaee;stroke-width:1.1;stroke-linecap:round;transform-box:fill-box;transform-origin:center;animation:dcs-spin .14s linear infinite}
+.dcs-led{animation:dcs-blink 1s steps(2) infinite}
+.dcs-sweep{transform-box:view-box;transform-origin:160px 100px;animation:dcs-spin 4.5s linear infinite}
+.dcs-target{animation:dcs-pulse 1.2s ease-in-out infinite}
+.dcs-link{stroke-dasharray:3 2;animation:dcs-dash .5s linear infinite}
+.dcs-conflict .dcs-pill rect{animation:dcs-pulse .5s ease-in-out infinite alternate}
+.dcs-edge{animation:dcs-pulse .5s ease-in-out infinite alternate}
+@keyframes dcs-spin{to{transform:rotate(360deg)}}
+@keyframes dcs-blink{50%{opacity:.2}}
+@keyframes dcs-pulse{50%{opacity:.35}}
+@keyframes dcs-dash{to{stroke-dashoffset:-5}}
+@media (prefers-reduced-motion:reduce){.dcs *{animation:none!important}}
+.dcs-hero{max-width:760px;border:1px solid #50303e;border-radius:6px;overflow:hidden}

@@ -8,7 +8,7 @@ import { TelemetryReport } from './TelemetryReport'
 import { RobotNavigationReport } from './RobotNavigationReport'
 import { EmergencyAbortReport } from './EmergencyAbortReport'
 import { DeconflictionReport } from './DeconflictionReport'
-import { DeconflictionCover } from './DeconflictionDemo'
+import { DroneConflictScene } from './DroneConflict'
 import { AbortCover } from './AbortDemo'
 import { NavCover } from './NavDemo'
 import { FoodHealthReport } from './FoodHealthReport'
@@ -98,7 +98,7 @@ function TeamBadge({ name }: { name: string }) {
 function ProjectPreview({ title }: { title: string }) {
  if (title === 'Computer Vision Food Recognition & Nutritional Analysis') return <div className="project-image-space website-project-preview food-project-preview"><img src="/projects/food-health/food-health-checker.png" alt="Food Health Checker showing live egg detection and nutrition facts" width="1558" height="1010" loading="lazy"/></div>
 
- if (title === 'Multi-Drone Deconfliction - WARG') return <div className="project-image-space website-project-preview"><DeconflictionCover/></div>
+ if (title === 'Multi-Drone Deconfliction - WARG') return <div className="project-image-space website-project-preview"><DroneConflictScene/></div>
  if (title === 'Emergency Abort System - WARG') return <div className="project-image-space website-project-preview"><AbortCover/></div>
 
  if (title === 'Autonomous Robot Navigation & LiDAR Mapping - WATonomous') return <div className="project-image-space website-project-preview"><NavCover/></div>
