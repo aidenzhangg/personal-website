@@ -17,7 +17,7 @@ export function ExperienceList({ value, section = 'work' }: { value: string; sec
   const teams = all.filter(entry => /WARG|WATonomous/.test(entry.title)).sort((a, b) => Number(b.title.includes('WARG')) - Number(a.title.includes('WARG')))
   const work = all.filter(entry => !/WARG|WATonomous/.test(entry.title))
   return <div className="compact-experience">
-    {section === 'work' && <section aria-label="Work and programs"><h2 className="experience-group-title">Work &amp; Programs</h2><div className="experience-accordion">{work.map(entry => {
+    {section === 'work' && <section aria-label="Engineering Experience"><h2 className="experience-group-title">Engineering Experience</h2><div className="experience-accordion">{work.map(entry => {
       const [role, ...organization] = entry.title.split(' - ')
       return <article className="experience-item" key={entry.title}><header className="experience-item-header"><div className="experience-item-heading"><h3>{role}</h3>{organization.length > 0 && <p>{organization.join(' - ')}</p>}<span className="experience-item-date">{entry.date}</span></div></header><div className="experience-item-body">{entry.bullets.length > 0 && <ul className="experience-bullets">{entry.bullets.map(line => <li key={line}>{line}</li>)}</ul>}</div></article>
     })}</div></section>}
