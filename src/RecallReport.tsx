@@ -1,7 +1,9 @@
 export function RecallReport() {
   return <section className="telemetry-report" aria-label="Recall project report">
     <section className="telemetry-validation"><h2>Why I built this</h2>
-      <p>Getting an AI answer immediately can feel like understanding without testing what I actually remember. Recall puts practice beside the material in a Chrome side panel: import notes, try a question, ask for a hint, and review the topics that need more work.</p>
+      <p>While studying, I noticed how easy it is to ask ChatGPT, Claude, or Gemini for an answer, read an explanation that makes sense, and move on without checking whether I could solve the problem myself. Having the answer in front of me can hide the parts I still do not understand. I wanted a study helper that keeps me involved in working those parts out.</p>
+      <p>Recall grew from that idea: put my course material, practice questions, and guidance in one Chrome side panel. When I get stuck on a quiz, it offers progressively more specific hints so I can take the next step myself. After answering, I can review the explanation and return to the topics I missed.</p>
+      <p>I also wanted it to encourage looking beyond an AI response. Recall points me toward learning resources and topic searches, giving me somewhere to investigate, compare explanations, and find examples. The goal is to make asking for help part of learning, while keeping the thinking and research in my hands.</p>
     </section>
     <section className="telemetry-validation"><h2>From course material to practice</h2>
       <p>Students can paste notes or import text, Markdown, and selectable-text PDFs. The extension extracts PDF text in the browser with pdf.js, then supports multiple-choice, fill-in-the-blank, long-answer, and mixed practice, alongside flashcards and past-paper review.</p>
@@ -10,6 +12,10 @@ export function RecallReport() {
     <section className="telemetry-validation"><h2>AI help that leaves room to think</h2>
       <p>Recall AI answers questions using relevant passages from the imported notes and shows the note lines used. During quiz practice, a three-step hint flow explains the concept and narrows the next step, with checks that reject responses revealing the hidden answer.</p>
       <p>The AI integration wraps an OpenAI-compatible chat-completions API for explanations, progressive hints, quiz generation, flashcards, and practice papers. In the Supabase setup, an authenticated Edge Function calls Groq with a server-held key; the current configured default is <code>openai/gpt-oss-120b</code>. The provider layer also supports OpenAI models, with the model selected through configuration.</p>
+    </section>
+    <section className="telemetry-validation"><h2>Finding explanations and doing the research</h2>
+      <p>The dashboard highlights missed topics and offers search links to Wikipedia, Khan Academy, YouTube, and MIT OpenCourseWare. These open searches for the topic, so students can choose a lesson, video, or reference that helps them understand it.</p>
+      <p>This gives a study session a practical next step: identify a gap, follow a hint, explore another explanation, and try the question again. The links are starting points for independent research rather than individually reviewed recommendations, and understanding still needs to be checked through practice.</p>
     </section>
     <section className="telemetry-validation"><h2>Face detection and focus tracking</h2>
       <p>The camera feature detects a face using MediaPipe Face Landmarker and draws its outline in the live preview. Head direction and eye-closure signals classify looking at the screen, looking away, closed eyes, or no face detected. A focus timer works alongside these checks and Chrome's site-blocking rules.</p>
