@@ -45,6 +45,7 @@ const projectOutcomes: Record<string, string> = {
  'Bedside Patient Monitoring System': 'Live BPM display that clears when a finger is removed',
 }
 const skillIcons: Record<string, string> = {
+ Supabase: 'supabase', MediaPipe: 'mediapipe',
  C: 'c', Go: 'go', 'PL/SQL': 'oracle', 'Spring MVC': 'spring', 'Hibernate/JPA': 'hibernate', JSON: 'json', YOLO: 'yolo', Bitbucket: 'bitbucket', Maven: 'maven', Gradle: 'gradle', Postman: 'postman', JUnit: 'junit', AWS: 'amazonwebservices', Azure: 'azure', GCP: 'googlecloud', Databricks: 'databricks', Spark: 'apachespark', Oracle: 'oracle', 'SQL Server': 'microsoftsqlserver', MongoDB: 'mongodb',
  Java: 'java', Python: 'python', 'C++': 'cplusplus', SQL: 'azuresqldatabase', HTML: 'html5', CSS: 'css3', TypeScript: 'typescript', JavaScript: 'javascript',
  React: 'react', 'Spring Boot': 'spring', PyTorch: 'pytorch', TensorFlow: 'tensorflow', 'scikit-learn': 'scikitlearn', OpenCV: 'opencv', 'ROS 2': 'ros', pandas: 'pandas', NumPy: 'numpy',
@@ -56,6 +57,7 @@ function SkillIcon({ name }: { name: string }) {
   const key = Object.keys(skillIcons).find(skill => skill.toLowerCase() === normalized)
   const icon = key ? skillIcons[key] : undefined
   const paths: Record<string, string> = {
+    Groq: 'M6 6h12v12H6V6ZM9 9h6v6H9V9ZM9 2v4m6-4v4M9 18v4m6-4v4M2 9h4m-4 6h4m12-6h4m-4 6h4',
     'REST APIs': 'M8 4 2 12l6 8m8-16 6 8-6 8M14 3l-4 18',
     'CI/CD': 'M8 7a5 5 0 1 0 0 10c4 0 4-10 8-10a5 5 0 1 1 0 10c-4 0-4-10-8-10Z',
     RAG: 'M3 4h7v14H3V4Zm11 0h7v14h-7V4ZM6 8h1m-1 4h1m10-4h1m-1 4h1M10 11h4m-2-2 2 2-2 2',
