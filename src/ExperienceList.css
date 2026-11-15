@@ -93,6 +93,7 @@
   align-items: start;
 }
 
+.compact-experience .experience-team-grid article > div { grid-column: 2; }
 .compact-experience .experience-team-grid article > img { margin-top: 4px; }
 .compact-experience .experience-team-grid article > div > p { color: #d59cb3; margin: 5px 0; }
 .compact-experience .experience-team-grid article > div > span { color: #ad9aa4; font-size: 12px; }
