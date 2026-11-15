@@ -36,7 +36,6 @@ text(x,344,'a522zhan@uwaterloo.ca',14,fill='#d0c3cb')
 buttons=[('View Projects','#81243a'),('View Resume (PDF)','#291d24'),('View Portfolio (PDF)','#291d24')]
 for i,(label,color) in enumerate(buttons):
  bx=x+i*288;d.rounded_rectangle((bx,384,bx+274,429),radius=4,fill=color,outline='#815067');text(bx+26,397,label,14,bold=True)
-intro="Software, firmware, and hardware — from full-stack applications to computer vision, robotics, and embedded systems. WARG Autonomy and WATonomous EVE team member."
 # Keep the sharing preview focused on the introduction and main actions.
 d.line((x,534,1120,534),fill='#3e2b35');text(x,552,'GitHub       LinkedIn',13,fill='#d9bdcc');text(920,552,'aidenzhang.vercel.app',12,fill='#bba0ad')
 d.rectangle((19,587,1181,612),fill='#100e10');text(34,591,'© 2026 Aiden Zhang',10,fill='#af9aa5')
