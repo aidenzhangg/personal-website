@@ -32,7 +32,7 @@ const stack = [
   ['Computer vision', 'MediaPipe Face Landmarker running as WebAssembly in the browser'],
   ['Files', 'pdf.js to read PDFs and jsPDF to write them, both in the browser'],
   ['Backend', 'Java 21, Spring Boot, JDBC with HikariCP, PDFBox, Maven, PostgreSQL'],
-  ['Testing and CI', '61 Node tests and 36 JUnit tests, ESLint and GitHub Actions on every push'],
+  ['Testing and CI', '60 Node tests and 36 JUnit tests, ESLint and GitHub Actions on every push'],
 ]
 
 const security = [
@@ -51,7 +51,7 @@ export function RecallReport() {
   return <section className="telemetry-report" aria-label="Recall project report">
     <section className="project-photo-section project-media-section" aria-label="Recall screenshots"><h2>Screens</h2>
       <div className="recall-shot-grid">{shots.map(shot => <figure key={shot.file}><a href={`/projects/recall/${shot.file}`} target="_blank" rel="noreferrer" aria-label={`Open ${shot.title.toLowerCase()} screenshot`}><img src={`/projects/recall/${shot.file}`} alt={`Recall ${shot.title}: ${shot.caption}`} width="840" height="1680" loading="lazy"/></a><figcaption><strong>{shot.title}</strong>{shot.caption}</figcaption></figure>)}</div>
-      <figure className="project-media-figure"><a href="/projects/recall/08-blocked-page.png" target="_blank" rel="noreferrer" aria-label="Open blocked page screenshot"><img src="/projects/recall/08-blocked-page.png" alt="The browser refusing to open youtube.com because it was blocked by the Recall extension" loading="lazy"/></a><figcaption>With blocking on, opening youtube.com is stopped by the browser before the page loads</figcaption></figure>
+      <figure className="project-media-figure"><a href="/projects/recall/08-blocked-page.png" target="_blank" rel="noreferrer" aria-label="Open blocked page screenshot"><img src="/projects/recall/08-blocked-page.png" alt="Chrome refusing to open www.instagram.com because it was blocked by the Recall extension" width="1357" height="915" loading="lazy"/></a><figcaption>With blocking on, Chrome stops instagram.com before the page loads. Every request to a blocked domain is refused, so sites like YouTube that load from their own cache can't fetch any content either</figcaption></figure>
     </section>
 
     <section className="telemetry-validation"><h2>Why I built this</h2>
