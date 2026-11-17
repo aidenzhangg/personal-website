@@ -39,7 +39,7 @@ const security = [
   ['Parameterized SQL', 'Every query in the Java backend goes through JDBC with ? placeholders, so user input is always sent as data and never pasted into SQL text. This blocks SQL injection.'],
   ['Row-level security', 'Each PostgreSQL table checks auth.uid() = user_id on every select, insert, update and delete. Even with a valid key, one user cannot read or change another user\'s notes.'],
   ['No API key in the extension', 'The Groq key lives only as a Supabase secret. The extension calls an Edge Function, which checks the user\'s sign-in token and turns away guests. The production build refuses to include an AI key.'],
-  ['Rate limits and size limits', 'Each account gets a daily AI limit, counted by a SECURITY DEFINER function with a pinned search_path and a hard cap of 1000, so calling it directly cannot raise the limit. Oversized requests and pictures are refused with 413.'],
+  ['Rate limits and size limits', 'Each account gets 200 AI requests per day, counted by a SECURITY DEFINER function with a pinned search_path and a hard cap of 1000, so calling it directly cannot raise the limit. Oversized requests and pictures are refused with 413.'],
   ['Input checks', 'Images must be well-formed JPEG, PNG or WebP data URLs and are only accepted in user messages, at most three per request. Saved progress is capped at 8 MB per account.'],
   ['Password storage', 'The backend hashes passwords with PBKDF2-HMAC-SHA256 (210,000 iterations) and a random per-user salt, and compares them in constant time. It locks sign-in for five minutes after eight failed attempts.'],
   ['Sessions and pairing codes', 'Session tokens and phone-pairing codes are stored only as SHA-256 hashes. Pairing codes expire after five minutes and can be used once.'],
@@ -57,6 +57,11 @@ export function RecallReport() {
     <section className="telemetry-validation"><h2>Why I built this</h2>
       <p>While studying, I noticed how easy it is to ask ChatGPT, Claude or Gemini for an answer, read an explanation that makes sense, and move on without checking whether I could solve the problem myself. Having the answer in front of me hid the parts I still did not understand. I wanted a study helper that keeps me doing the thinking.</p>
       <p>Recall puts my course material, practice questions and guidance in one Chrome side panel. When I get stuck, it gives me hints so I can take the next step myself. It also points me to Wikipedia, Khan Academy, YouTube and MIT OpenCourseWare searches, so asking for help leads to more research instead of a copied answer.</p>
+    </section>
+
+    <section className="telemetry-validation"><h2>Implementation and validation</h2>
+      <p>The project has 96 automated tests: 60 Node tests for extension logic and 36 JUnit tests for the Java backend. Practice supports four question types, and the AI gateway enforces a 200-request daily limit per user while keeping the provider key entirely on the server.</p>
+      <p>PostgreSQL row-level security covers all four database operations: select, insert, update and delete. The Java backend uses parameterized SQL and PBKDF2 password hashing with 210,000 iterations. For camera focus, 478 MediaPipe face landmarks feed four attention states, using yaw and pitch thresholds of 0.2 and 0.24 alongside blink scores.</p>
     </section>
 
     <section className="telemetry-validation"><h2>Features</h2><dl className="recall-features">{features.map(([name, text]) => <div key={name}><dt>{name}</dt><dd>{text}</dd></div>)}</dl></section>
