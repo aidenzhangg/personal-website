@@ -28,7 +28,7 @@ const stack = [
   ['Extension', 'React 19, TypeScript, Vite, Chrome Manifest V3 (side panel, storage, declarativeNetRequest, identity)'],
   ['AI', 'A Supabase Edge Function (Deno) calling Groq: gpt-oss-120b for text and a vision model for screenshots, with Chrome\'s on-device Gemini Nano and rule-based code as fallbacks'],
   ['Accounts and data', 'Supabase Auth (email and Google), PostgreSQL with row-level security'],
-  ['Google sign-in', 'An OAuth 2.0 client on Google Cloud Platform, connected to Supabase and Chrome\'s identity API'],
+  ['Google sign-in', 'An OAuth 2.0 client connected to Supabase and Chrome\'s identity API'],
   ['Computer vision', 'MediaPipe Face Landmarker running as WebAssembly in the browser'],
   ['Files', 'pdf.js to read PDFs and jsPDF to write them, both in the browser'],
   ['Backend', 'Java 21, Spring Boot, JDBC with HikariCP, PDFBox, Maven, PostgreSQL'],
@@ -93,7 +93,7 @@ export function RecallReport() {
     </ol></section>
 
     <section className="telemetry-validation"><h2>What I learned</h2>
-      <p>This was my first project where I owned everything from the UI to the database. I learned to design PostgreSQL tables around row-level security, keep secrets on the server, and set up OAuth on Google Cloud. I also learned to work within Chrome's extension permissions and run computer vision in the browser. I wrote the core logic as pure functions (gaze classification, hint redaction, review scheduling and PDF parsing) so it could be tested without a browser, and GitHub Actions runs the tests, lint and build on every push.</p>
+      <p>This was my first project where I owned everything from the UI to the database. I learned to design PostgreSQL tables around row-level security, keep secrets on the server, and set up Google sign-in through OAuth. I also learned to work within Chrome's extension permissions and run computer vision in the browser. I wrote the core logic as pure functions (gaze classification, hint redaction, review scheduling and PDF parsing) so it could be tested without a browser, and GitHub Actions runs the tests, lint and build on every push.</p>
       <p>Nothing here was trained by me. The language models and Face Landmarker are pretrained, and Recall never uses notes or camera frames to train anything. Generated questions and AI feedback still need checking against the original course material.</p>
     </section>
   </section>
