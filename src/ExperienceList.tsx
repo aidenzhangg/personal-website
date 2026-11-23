@@ -14,8 +14,8 @@ function parseEntries(value: string): Entry[] {
 
 export function ExperienceList({ value, section = 'work' }: { value: string; section?: 'work' | 'teams' }) {
   const all = parseEntries(value)
-  const teams = all.filter(entry => /WARG|WATonomous/.test(entry.title)).sort((a, b) => Number(b.title.includes('WARG')) - Number(a.title.includes('WARG')))
-  const work = all.filter(entry => !/WARG|WATonomous/.test(entry.title))
+  const teams = all.filter(entry => /WARG|Formula Electric/.test(entry.title)).sort((a, b) => Number(b.title.includes('WARG')) - Number(a.title.includes('WARG')))
+  const work = all.filter(entry => !/WARG|Formula Electric/.test(entry.title))
   return <div className="compact-experience">
     {section === 'work' && <section aria-label="Experience"><h2 className="experience-group-title">Experience</h2><div className="experience-accordion">{work.map(entry => {
       const [role, ...organization] = entry.title.split(' - ')
@@ -23,7 +23,7 @@ export function ExperienceList({ value, section = 'work' }: { value: string; sec
     })}</div></section>}
     {section === 'teams' && teams.length > 0 && <section className="compact-design-teams"><h2 className="experience-group-title">Engineering Experience</h2><div className="experience-team-grid">{teams.map(entry => {
       const isWarg = entry.title.includes('WARG')
-      return <article key={entry.title}><img src={isWarg ? "/icons/warg.png" : "/icons/watonomous.png"} alt="" width="44" height="32" style={{ objectFit: "contain" }}/><div><h3>{entry.title.split(' - ').slice(1).join(' - ')}</h3><p>{entry.title.split(' - ')[0]}</p>{entry.date && <span>{entry.date}</span>}{entry.bullets.length > 0 && <div className="experience-team-description">{entry.bullets.map(line => <p key={line}>{line}</p>)}</div>}{isWarg && <div className="team-contribution-links"><a href="https://github.com/UWARG/autonomy-monorepo/pull/180" target="_blank" rel="noreferrer">Telemetry PR #180</a><a href="https://github.com/UWARG/autonomy-monorepo/pull/218" target="_blank" rel="noreferrer">ABORT PR #218</a><a href="https://github.com/UWARG/autonomy-monorepo/pull/251" target="_blank" rel="noreferrer">Deconfliction &amp; Separation Assurance PR #251 (Under review)</a></div>}</div></article>
+      return <article key={entry.title}><img src={isWarg ? "/icons/warg.png" : "/icons/formula-electric.png"} alt="" width="44" height="32" style={{ objectFit: "contain" }}/><div><h3>{entry.title.split(' - ').slice(1).join(' - ')}</h3><p>{entry.title.split(' - ')[0]}</p>{entry.date && <span>{entry.date}</span>}{entry.bullets.length > 0 && <div className="experience-team-description">{entry.bullets.map(line => <p key={line}>{line}</p>)}</div>}{isWarg && <div className="team-contribution-links"><a href="https://github.com/UWARG/autonomy-monorepo/pull/180" target="_blank" rel="noreferrer">Telemetry PR #180</a><a href="https://github.com/UWARG/autonomy-monorepo/pull/218" target="_blank" rel="noreferrer">ABORT PR #218</a><a href="https://github.com/UWARG/autonomy-monorepo/pull/251" target="_blank" rel="noreferrer">Deconfliction &amp; Separation Assurance PR #251 (Under review)</a></div>}</div></article>
     })}</div></section>}
   </div>
 }
