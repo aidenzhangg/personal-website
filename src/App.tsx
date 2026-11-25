@@ -44,7 +44,7 @@ const projectOutcomes: Record<string, string> = {
  'Recall - AI Study Assistant Chrome Extension': 'Full-stack study app with AI hints, focus tracking and site blocking',
  'Autonomous Robot Navigation & LiDAR Mapping - WATonomous': 'LiDAR mapping and obstacle navigation in simulation',
  'Bedside Patient Monitoring System': 'Live BPM display that clears when a finger is removed',
- 'IMU Exercise Wristband': 'Reps, short reps and heart rate streamed at 20 Hz',
+ 'IMU Exercise Wristband': 'Wearable that streams joint angle and heart rate at 20 Hz to count reps, flag short reps and coach cardio zones',
 }
 const skillIcons: Record<string, string> = {
  Arduino: 'arduino', STM32: 'stmicroelectronics', STM32CubeMX: 'stmicroelectronics',
