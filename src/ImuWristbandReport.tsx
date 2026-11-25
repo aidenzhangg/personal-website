@@ -26,11 +26,8 @@ function Photo({ file, alt, caption, width, height }: { file: string; alt: strin
 
 export function ImuWristbandReport() {
   return <section className="telemetry-report imu-report" aria-label="IMU exercise wristband project report">
-    <p className="telemetry-summary">A wearable motion-and-vitals band, plus a web app that coaches a full exercise session around it. An Arduino UNO R4 Minima reads a 3-axis accelerometer and a pulse sensor on the arm or thigh, streams joint angle and heart rate to the browser at 20 Hz, and the site counts reps, flags short reps, keeps you in your heart-rate zone and logs every set.</p>
-    <p className="telemetry-summary">The firmware turns the three accelerometer axes into pitch and roll to 0.1°, and only reports a heart rate after 4 good beats in a row, so the app never shows a made-up number. The app calibrates each user's start and end angles, counts a rep at 85% of that range, flags short reps with the percentage reached, and times holds like planks only while you stay within ±12° of position. During cardio it keeps you inside a 114–136 BPM heart-rate-reserve zone, and once you hit 20 reps on both sets it tells you to add load.</p>
-    <p className="telemetry-summary">The session follows the <strong>CCCARE</strong> exercise program from the University of Waterloo: a warm-up and 15–30 min of cardio at 40–60% of heart-rate reserve, then 1–2 sets of 10–20 reps of two exercises in each functional category (squat, push, hinge, pull, carry, core), stretches and a cool-down. The band replaces the paper log and the "did that rep count?" guesswork. Built for ECE 198 at the University of Waterloo.</p>
-
     <section className="project-photo-section project-media-section" aria-label="IMU wristband media">
+      <h2>The prototype</h2>
       <Photo file="band-prototype.jpg" alt="Arduino UNO R4 Minima taped to a black neoprene wrist support, with the accelerometer and pulse sensor on jumper leads" caption="The band prototype" width={1200} height={1600}/>
       <h2>Live demo</h2>
       <figure className="project-media-figure imu-video">
@@ -38,6 +35,10 @@ export function ImuWristbandReport() {
         <figcaption>Rotating the wrist with the band on. The dial on the laptop follows the angle the band streams over USB</figcaption>
       </figure>
     </section>
+
+    <section className="telemetry-validation"><h2>Overview</h2><p>A wearable motion-and-vitals band, plus a web app that coaches a full exercise session around it. An Arduino UNO R4 Minima reads a 3-axis accelerometer and a pulse sensor on the arm or thigh, streams joint angle and heart rate to the browser at 20 Hz, and the site counts reps, flags short reps, keeps you in your heart-rate zone and logs every set.</p></section>
+    <section className="telemetry-validation"><h2>Accurate readings, no made-up numbers</h2><p>The firmware turns the three accelerometer axes into pitch and roll to 0.1°, and only reports a heart rate after 4 good beats in a row, so the app never shows a made-up number. The app calibrates each user's start and end angles, counts a rep at 85% of that range, flags short reps with the percentage reached, and times holds like planks only while you stay within ±12° of position. During cardio it keeps you inside a 114–136 BPM heart-rate-reserve zone, and once you hit 20 reps on both sets it tells you to add load.</p></section>
+    <section className="telemetry-validation"><h2>The CCCARE program</h2><p>The session follows the <strong>CCCARE</strong> exercise program from the University of Waterloo: a warm-up and 15–30 min of cardio at 40–60% of heart-rate reserve, then 1–2 sets of 10–20 reps of two exercises in each functional category (squat, push, hinge, pull, carry, core), stretches and a cool-down. The band replaces the paper log and the "did that rep count?" guesswork. Built for ECE 198 at the University of Waterloo.</p></section>
 
     <section className="telemetry-validation"><h2>At a glance</h2><dl className="bedside-parts imu-table">{glance.map(item => <div key={item.name}><dt>{item.name}</dt><dd>{item.role}</dd></div>)}</dl></section>
 
