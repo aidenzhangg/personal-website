@@ -25,7 +25,7 @@ function Photo({ file, alt, caption, width, height }: { file: string; alt: strin
 }
 
 export function ImuWristbandReport() {
-  return <section className="telemetry-report" aria-label="IMU exercise wristband project report">
+  return <section className="telemetry-report imu-report" aria-label="IMU exercise wristband project report">
     <p className="telemetry-summary">A wearable motion-and-vitals band, plus a web app that coaches a full exercise session around it. An Arduino UNO R4 Minima reads a 3-axis accelerometer and a pulse sensor on the arm or thigh, streams joint angle and heart rate to the browser at 20 Hz, and the site counts reps, flags short reps, keeps you in your heart-rate zone and logs every set.</p>
     <p className="telemetry-summary">The firmware turns the three accelerometer axes into pitch and roll to 0.1°, and only reports a heart rate after 4 good beats in a row, so the app never shows a made-up number. The app calibrates each user's start and end angles, counts a rep at 85% of that range, flags short reps with the percentage reached, and times holds like planks only while you stay within ±12° of position. During cardio it keeps you inside a 114–136 BPM heart-rate-reserve zone, and once you hit 20 reps on both sets it tells you to add load.</p>
     <p className="telemetry-summary">The session follows the <strong>CCCARE</strong> exercise program from the University of Waterloo: a warm-up and 15–30 min of cardio at 40–60% of heart-rate reserve, then 1–2 sets of 10–20 reps of two exercises in each functional category (squat, push, hinge, pull, carry, core), stretches and a cool-down. The band replaces the paper log and the "did that rep count?" guesswork. Built for ECE 198 at the University of Waterloo.</p>

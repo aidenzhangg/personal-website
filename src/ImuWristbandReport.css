@@ -4,3 +4,5 @@
 .imu-sample-note{font-size:13.5px;line-height:1.8;margin:0 0 18px}
 .imu-project-preview>img{object-fit:cover;object-position:40% 40%}
 .bedside-parts.imu-table div{font-size:16.5px}
+.imu-report .telemetry-validation p,.imu-report ul,.imu-report .telemetry-flow li{font-size:16px}
+.imu-report .abort-text-tree{font-size:14px}
