@@ -1,0 +1,8 @@
+.imu-video video{width:auto;max-width:100%;max-height:520px;margin-inline:auto}
+.imu-video figcaption{text-align:center}
+.imu-photo-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:28px}
+.imu-photo-pair figure{margin:0;min-width:0}
+.imu-photo-pair a{display:block;background:#0c0c0c;border:1px solid #50303e;border-radius:6px;overflow:hidden}
+.imu-photo-pair img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover}
+.imu-photo-pair figcaption{font-size:12px;line-height:1.6;color:#bca9b3;margin-top:8px}
+.imu-project-preview>img{object-fit:cover;object-position:50% 68%}
