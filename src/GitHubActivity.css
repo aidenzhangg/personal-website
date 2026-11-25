@@ -1,4 +1,4 @@
-.gh-activity{--gh-cell:11px;--gh-gap:3px;margin:22px 0 6px;padding:16px 18px;border:1px solid #3e2c34;border-radius:6px;background:#151214;max-width:100%}
+.gh-activity{--gh-cell:11px;--gh-gap:3px;position:relative;margin:14px 0 6px;padding:16px 18px;border:1px solid #3e2c34;border-radius:6px;background:#151214;max-width:100%}
 .gh-activity-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 16px;margin-bottom:12px}
 .gh-activity-head h2{font-size:15px;margin:0;color:#f1e7ec}
 .gh-activity-head a{font-size:13px;color:#cfc3c9}
@@ -6,12 +6,16 @@
 .gh-activity-scroll{overflow-x:auto;padding-bottom:4px;direction:rtl}
 .gh-activity-grid{display:grid;grid-template-rows:14px repeat(7,var(--gh-cell));gap:var(--gh-gap);direction:ltr;width:max-content}
 .gh-month{grid-row:1;font-size:10px;line-height:14px;color:#9d8d95;white-space:nowrap}
-.gh-cell{display:block;width:var(--gh-cell);height:var(--gh-cell);border-radius:2px}
+.gh-cell{display:block;width:var(--gh-cell);height:var(--gh-cell);border-radius:2px;outline:none}
+.gh-activity-grid .gh-cell:hover,.gh-activity-grid .gh-cell:focus-visible{box-shadow:0 0 0 1.5px #f1e7ec}
 .gh-l0{background:#2a2328}
-.gh-l1{background:#0e4429}
-.gh-l2{background:#006d32}
-.gh-l3{background:#26a641}
-.gh-l4{background:#39d353}
+.gh-l1{background:#4f1c2b}
+.gh-l2{background:#7d2840}
+.gh-l3{background:#b33a58}
+.gh-l4{background:#e8587a}
 .gh-legend{display:flex;align-items:center;justify-content:flex-end;gap:4px;margin-top:8px;font-size:11px;color:#9d8d95}
 .gh-legend span:first-child{margin-right:2px}
 .gh-legend span:last-child{margin-left:2px}
+.gh-tip{position:absolute;transform:translate(-50%,calc(-100% - 8px));padding:6px 9px;border-radius:5px;background:#f1e7ec;color:#1a1417;font-size:12px;line-height:1.3;white-space:nowrap;pointer-events:none;z-index:5;box-shadow:0 4px 14px rgba(0,0,0,.45)}
+.gh-tip::after{content:"";position:absolute;left:50%;top:100%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#f1e7ec}
+.identity-socials-top{margin-top:18px}
