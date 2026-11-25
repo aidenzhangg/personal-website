@@ -39,7 +39,7 @@ export function ImuWristbandReport() {
       </figure>
     </section>
 
-    <section className="telemetry-validation"><h2>At a glance</h2><dl className="bedside-parts">{glance.map(item => <div key={item.name}><dt>{item.name}</dt><dd>{item.role}</dd></div>)}</dl></section>
+    <section className="telemetry-validation"><h2>At a glance</h2><dl className="bedside-parts imu-table">{glance.map(item => <div key={item.name}><dt>{item.name}</dt><dd>{item.role}</dd></div>)}</dl></section>
 
     <section className="telemetry-validation"><h2>How it works</h2><ol className="telemetry-flow">
       <li>The MMA7361 feeds three analog axes into A0–A2 and the MAX30102 talks over I2C</li><li>The UNO R4 filters the angles, checks every heartbeat and builds one JSON sample</li><li>Every 50 ms the sample goes out over USB serial at 115200 baud (or over Wi-Fi on port 5555)</li><li>The React app calibrates the A and B angles and runs the rep and hold engine</li><li>Heart-rate zones are checked with the Karvonen formula and every set is saved locally</li>
@@ -69,7 +69,7 @@ export function ImuWristbandReport() {
     <section className="project-photo-section project-media-section" aria-label="Wiring and web app">
       <h2>Hardware and wiring</h2>
       <Photo file="wiring-diagram.png" alt="Wiring diagram: MAX30102 on SDA and SCL, MMA7361 X, Y and Z on A0 to A2, both powered from the Arduino" caption="MAX30102 on the I2C header, MMA7361 axes on A0 to A2" width={1080} height={586}/>
-      <dl className="bedside-parts imu-wiring">{wiring.map(item => <div key={item.name}><dt>{item.name}</dt><dd>{item.role}</dd></div>)}</dl>
+      <dl className="bedside-parts imu-table imu-wiring">{wiring.map(item => <div key={item.name}><dt>{item.name}</dt><dd>{item.role}</dd></div>)}</dl>
 
       <h2>The website</h2>
       <Photo file="site-home.png" alt="Session overview with warm-up and cardio zone, then exercise categories with calibration status" caption="Session overview: warm-up and cardio with your personal zone, then each exercise category with its calibration status" width={2160} height={1350}/>
