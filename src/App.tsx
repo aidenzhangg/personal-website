@@ -45,6 +45,7 @@ const projectOutcomes: Record<string, string> = {
  'Bedside Patient Monitoring System': 'Live BPM display that clears when a finger is removed',
 }
 const skillIcons: Record<string, string> = {
+ Arduino: 'arduino', STM32: 'stmicroelectronics', STM32CubeMX: 'stmicroelectronics',
  Supabase: 'supabase', MediaPipe: 'mediapipe',
  C: 'c', Go: 'go', 'PL/SQL': 'oracle', 'Spring MVC': 'spring', 'Hibernate/JPA': 'hibernate', JSON: 'json', YOLO: 'yolo', Bitbucket: 'bitbucket', Maven: 'maven', Gradle: 'gradle', Postman: 'postman', JUnit: 'junit', AWS: 'amazonwebservices', Azure: 'azure', GCP: 'googlecloud', Databricks: 'databricks', Spark: 'apachespark', Oracle: 'oracle', 'SQL Server': 'microsoftsqlserver', MongoDB: 'mongodb',
  Java: 'java', Python: 'python', 'C++': 'cplusplus', SQL: 'azuresqldatabase', HTML: 'html5', CSS: 'css3', TypeScript: 'typescript', JavaScript: 'javascript',
