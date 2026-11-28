@@ -25,8 +25,8 @@ function Photo({ file, alt, caption, width, height }: { file: string; alt: strin
 }
 
 export function ImuWristbandReport() {
-  return <section className="telemetry-report imu-report" aria-label="IMU exercise wristband project report">
-    <section className="project-photo-section project-media-section" aria-label="IMU wristband media">
+  return <section className="telemetry-report imu-report" aria-label="IMU exercise band project report">
+    <section className="project-photo-section project-media-section" aria-label="IMU exercise band media">
       <h2>The prototype</h2>
       <Photo file="band-prototype.jpg" alt="Arduino UNO R4 Minima taped to a black neoprene wrist support, with the accelerometer and pulse sensor on jumper leads" caption="The band prototype" width={1200} height={1600}/>
       <h2>Live demo</h2>
